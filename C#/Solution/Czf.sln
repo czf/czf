@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.2.2.8818
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.App", "Czf.App", "{8607B1FA-1B7C-4CE3-81AF-A000DC98FCE2}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuction", "..\WebAuction\WebAuction.csproj", "{810DC096-98DE-4248-A8E4-E305455CEA81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Sources", "Czf.Sources", "{EAB36126-EB1F-4327-83E1-A4D394A7402B}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Domain", "Czf.Domain", "{37431516-E372-40BF-8A79-D582620711CD}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain.csproj", "{791687F9-3097-41E6-9C34-73B62481CC5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.Build.0 = Debug|x86
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.ActiveCfg = Debug|x86
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.Build.0 = Release|x86
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.ActiveCfg = Release|x86
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.Build.0 = Debug|x86
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.ActiveCfg = Debug|x86
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.Build.0 = Release|x86
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{810DC096-98DE-4248-A8E4-E305455CEA81} = {8607B1FA-1B7C-4CE3-81AF-A000DC98FCE2}
+		{791687F9-3097-41E6-9C34-73B62481CC5D} = {37431516-E372-40BF-8A79-D582620711CD}
+	EndGlobalSection
+EndGlobal

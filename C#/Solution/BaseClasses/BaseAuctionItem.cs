@@ -9,8 +9,8 @@
 using System;
 using System.Collections.Generic;
 using Czf.Domain.BaseClasses;
-using Czf.Domain.Interfaces;
-using Czf.Interfaces.Sources;
+using Czf.Domain.Interfaces.Consumers;
+using Czf.Domain.Interfaces.Sources;
 
 namespace Czf.Domain.BaseClasses
 {

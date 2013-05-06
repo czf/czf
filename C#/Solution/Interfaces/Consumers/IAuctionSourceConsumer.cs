@@ -7,15 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using Czf.Interfaces.Sources;
+using Czf.Domain.Interfaces.Sources;
 
-namespace Czf.Interfaces.Consumers
+namespace Czf.Domain.Interfaces.Consumers
 {
 	/// <summary>
 	/// Description of IAuctionConsumer.
 	/// </summary>
-	public interface IAuctionConsumer
+	public interface IAuctionSourceConsumer
 	{
-		IAuctionSource AuctionSource;
+		IAuctionSource AuctionSource {get; set;} 
 	}
 }

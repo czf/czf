@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using Czf.Interfaces.Sources;
+using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.BaseClasses;
 using Czf.Domain.GenericObjects;
 using System.Collections.Generic;
@@ -26,14 +26,13 @@ namespace Czf.Domain.AuctionObjects
 		
 		public string UserName {get; set;} 
 		
-		[NonSerialized]
 		public List<Bid> UserBids 
 		{
 			get
 			{
-				if(_userBids == null)
+				if(_userBids == null && Id.HasValue)
 				{
-					_userBids = AuctionSource.GetRelatedById<Bid,User>(Id);
+					_userBids = AuctionSource.GetRelatedById<Bid,User>(Id.Value);
 				}
 				return _userBids;
 			}

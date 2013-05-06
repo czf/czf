@@ -8,7 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
-namespace Czf.Interfaces.Sources
+namespace Czf.Domain.Interfaces.Sources
 {
 	/// <summary>
 	/// Description of IAuctionSource.

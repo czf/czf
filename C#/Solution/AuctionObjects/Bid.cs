@@ -2,7 +2,7 @@
 using System.Diagnostics.Eventing.Reader;
 using Czf.Domain.BaseClasses;
 using Czf.Domain.AuctionObjects;
-using Czf.Interfaces.Sources;
+using Czf.Domain.Interfaces.Sources;
 namespace Czf.Domain.AuctionObjects
 {
 	/// <summary>

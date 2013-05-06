@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using Czf.Domain.BaseClasses;
 using Czf.Domain.Interfaces;
-using Czf.Interfaces.Sources;
+using Czf.Domain.Interfaces.Sources;
 
 /// <summary>
 /// Purchase item.  Items that are not bid on but bought as a group.  Bid-o-gram doesn't acutally have these.

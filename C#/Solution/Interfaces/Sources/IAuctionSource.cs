@@ -21,5 +21,15 @@ namespace Czf.Domain.Interfaces.Sources
 		List<ChildT> GetRelatedById<ChildT,ParentT>(int id)
 			where ChildT : class
 			where ParentT : class;
+		
+		List<ChildT> GetRelatedByAlternateLookupId<Child,Parent>(int id)
+			where ChildT : class
+			where ParentT : class;
+		
+		bool Save<T>(T target)
+			where T : class;
+		
+		T Create<T>()
+			where T : class;
 	}
 }

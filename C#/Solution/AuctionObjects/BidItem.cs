@@ -6,17 +6,13 @@ using Czf.Domain.Interfaces.Sources;
 using System.Linq;
 namespace Czf.Domain.AuctionObjects
 {
-	public class BidItem : IdentifiedByInt, IAuctionSourceConsumer
+	public class BidItem : BaseAuctionItem
 	{
 		#region private
 		private List<Bid> _itemBids;
 		#endregion
 		
 		#region Properties
-		/// <summary>
-		/// Get data relating to auctions
-		/// </summary>
-		public IAuctionSource AuctionSource {get; set;} 
 		
 		
 		/// <summary>

@@ -72,5 +72,15 @@
     <Folder Include="Models" />
     <Folder Include="Models\InputViewModel" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Solution\Domain.csproj">
+      <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Solution\StubAuctionSource\AuctionSource.csproj">
+      <Project>{23F7C225-9978-4EC1-9BE3-2DCF30862629}</Project>
+      <Name>AuctionSource</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

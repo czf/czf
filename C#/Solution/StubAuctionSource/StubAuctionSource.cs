@@ -14,7 +14,7 @@ using Czf.Domain.GenericObjects;
 using Czf.Domain.Interfaces.Sources;
 using System.Collections.Generic;
 
-namespace StubAuctionSource
+namespace Czf.Sources.StubAuctionSource
 {
 	/// <summary>
 	/// A temporary data source for auction data.

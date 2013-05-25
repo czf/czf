@@ -15,7 +15,7 @@ namespace Czf.Domain.BaseClasses
 	/// </summary>
 	public class IdentifiedByInt : ICachable
 	{
-		public int? Id { get; private set; }
+		public int? Id { get; set; }
 		
 		
 		#region ICachable

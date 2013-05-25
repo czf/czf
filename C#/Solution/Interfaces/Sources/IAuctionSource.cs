@@ -22,7 +22,7 @@ namespace Czf.Domain.Interfaces.Sources
 			where ChildT : class
 			where ParentT : class;
 		
-		List<ChildT> GetRelatedByAlternateLookupId<Child,Parent>(int id)
+		List<ChildT> GetRelatedByAlternateLookupId<ChildT,ParentT>(int id)
 			where ChildT : class
 			where ParentT : class;
 		

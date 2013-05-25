@@ -6,7 +6,7 @@ namespace WebAuction.Controllers
 	/// <summary>
 	/// Description of SettingsController.cs.
 	/// </summary>
-	public class SettingsController.cs : Controller
+	public class SettingsController : Controller
 	{
 		public ActionResult Index()
 		{

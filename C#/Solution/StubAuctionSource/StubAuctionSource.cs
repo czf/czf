@@ -24,16 +24,16 @@ namespace Czf.Sources.StubAuctionSource
 	{
 		#region Private
 		#region something
-		Dictionary<Type,Dictionary<int,IdentifiedByInt>> _domainDictionay {get; set;} 
+		private Dictionary<Type,Dictionary<int,object>> _domainDictionay {get; set;} 
 		#endregion
 		#endregion
 		
 		public StubAuctionSource()
 		{
-			_domainDictionay = new Dictionary<Type, Dictionary<int, IdentifiedByInt>>();
-			_domainDictionay.Add(typeof(Bid),new Dictionary<int,IdentifiedByInt>());
-			_domainDictionay.Add(typeof(BidItem),new Dictionary<int,IdentifiedByInt>());
-			_domainDictionay.Add(typeof(User),new Dictionary<int,IdentifiedByInt>());
+			_domainDictionay = new Dictionary<Type, Dictionary<int, object>>();
+			_domainDictionay.Add(typeof(Bid),new Dictionary<int,object>());
+			_domainDictionay.Add(typeof(BidItem),new Dictionary<int,object>());
+			_domainDictionay.Add(typeof(User),new Dictionary<int,object>());
 			
 			_domainDictionay[typeof(BidItem)].Add(1,
 			                                      	new BidItem{
@@ -57,45 +57,44 @@ namespace Czf.Sources.StubAuctionSource
 			                                   	AuctionSource = this,
 			                                   	Name = new Name("test", "user"),
 			                                   	UserName = "123"
-			                                   }
+			                                   });
 			_domainDictionay[typeof(User)].Add(1,
 			                                   new User{
 			                                   	Id = 2,
 			                                   	AuctionSource = this,
 			                                   	Name = new Name("example", "tester"),
 			                                   	UserName = "321"
-			                                   }                                   
-												
+			                                   });
 		}
 		
-		public T Get<T>(int id)
+		public T Get<T>(int id) where T : class
 		{
 			T result = null;
 			if (_domainDictionay.ContainsKey(typeof(T))) {
 				if(_domainDictionay[typeof(T)].ContainsKey(id))
 				{
-					result = _domainDictionay[typeof(T)][id];
+					result = (T)_domainDictionay[typeof(T)][id];
 				}
 			}
 			return result;
 		}
 		
-		public List<ChildT> GetRelatedById<ChildT, ParentT>(int id)
+		public List<ChildT> GetRelatedById<ChildT, ParentT>(int id) where ChildT : class where ParentT : class
 		{
 			throw new NotImplementedException();
 		}
 		
-		public System.Collections.Generic.List<ChildT> GetRelatedByAlternateLookupId<Child, Parent>(int id)
+		public List<ChildT> GetRelatedByAlternateLookupId<ChildT, ParentT>(int id) where ChildT : class where ParentT : class
 		{
 			throw new NotImplementedException();
 		}
 		
-		public bool Save<T>(T target)
+		public bool Save<T>(T target) where T : class
 		{
 			throw new NotImplementedException();
 		}
 		
-		public T Create<T>()
+		public T Create<T>() where T : class
 		{
 			throw new NotImplementedException();
 		}

@@ -26,7 +26,7 @@ namespace WebAuction.Controllers
 		/// </summary>
 		/// <param name="username"></param>
 		/// <returns></returns>
-		public ActionResult Login(int? username)
+		public ActionResult LoginAction(int? username)
 		{
 			User user = null;
 			if (username.HasValue) {
@@ -34,7 +34,7 @@ namespace WebAuction.Controllers
 				//Set user state/cookies
 			
 			}
-			return View("LoggedIn", new LoginViewModel());
+			return View("LoggedIn", new LoginActionViewModel());
 		}
 	}
 }

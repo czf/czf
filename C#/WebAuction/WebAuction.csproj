@@ -49,7 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\SetupSessionAttribute.cs" />
+    <Compile Include="ActionFilters\SetupAuctionSessionAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SettingsController.cs.cs" />
@@ -75,6 +75,10 @@
     <Folder Include="ActionFilters" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Solution\Czf.Util.Common\Czf.Util.Common.csproj">
+      <Project>{22F228A1-956C-44E1-AB81-9262E6B9CB0B}</Project>
+      <Name>Czf.Util.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Solution\Domain.csproj">
       <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
       <Name>Domain</Name>

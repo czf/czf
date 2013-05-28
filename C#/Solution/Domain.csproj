@@ -7,9 +7,11 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Czf</RootNamespace>
     <AssemblyName>Domain</AssemblyName>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,10 +49,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AuctionObjects\AuctionSessionObjects" />
     <Folder Include="Interfaces\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuctionObjects\AuctionSessionObjects\AuctionSession.cs" />
     <Compile Include="AuctionObjects\Bid.cs" />
     <Compile Include="AuctionObjects\User.cs" />
     <Compile Include="BaseClasses\IdentifiedByInt.cs" />
@@ -58,6 +62,7 @@
     <Compile Include="GenericObjects\Name.cs" />
     <Compile Include="Interfaces\Consumers\IAuctionSourceConsumer.cs" />
     <Compile Include="Interfaces\ICachable.cs" />
+    <Compile Include="Interfaces\IHasAuctionSession.cs" />
     <Compile Include="Interfaces\Sources\IAuctionSource.cs" />
     <Compile Include="AuctionObjects\PurchaseItem.cs" />
     <Compile Include="BaseClasses\BaseAuctionItem.cs" />

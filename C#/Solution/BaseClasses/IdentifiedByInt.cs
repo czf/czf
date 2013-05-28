@@ -16,8 +16,7 @@ namespace Czf.Domain.BaseClasses
 	public class IdentifiedByInt : ICachable
 	{
 		public int? Id { get; set; }
-		
-		
+
 		#region ICachable
 		public bool ReadyForCache()
 		{

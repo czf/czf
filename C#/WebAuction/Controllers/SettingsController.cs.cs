@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace WebAuction.Controllers
+namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
 	/// Description of SettingsController.cs.

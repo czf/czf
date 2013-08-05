@@ -9,7 +9,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace Czf.WebAuction.Controllers
+namespace Czf.App.WebAuction.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -22,5 +22,6 @@ namespace Czf.WebAuction.Controllers
 		{
 			return View();
 		}
+		
 	}
 }

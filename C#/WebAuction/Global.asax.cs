@@ -9,10 +9,10 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
-namespace WebAuction
+using Czf.Domain.Global;
+namespace Czf.App.WebAuction
 {
-	public class MvcApplication : HttpApplication
+	public class CzfWebAuction : HttpApplication
 	{
 		public static void RegisterRoutes(RouteCollection routes)
 		{
@@ -28,6 +28,9 @@ namespace WebAuction
 				});
 		}
 		
+		/// <summary>
+		/// Executed once per running web application instance startup.
+		/// </summary>		
 		protected void Application_Start()
 		{
 			RegisterRoutes(RouteTable.Routes);

@@ -7,16 +7,28 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-
-namespace WebAuction.Models
+using Czf.App.WebAuction.Models.InputViewModel;
+namespace Czf.App.WebAuction.Models
 {
 	/// <summary>
 	/// Data pertaining to login.
 	/// </summary>
 	public class LoginActionViewModel
 	{
+		#region Properties
+		/// <summary>
+		/// Gets or sets the Input
+		/// </summary>
+		LoginActionInputModel Input {get; set;} 
+		#endregion
+		
+		#region Constructors
 		public LoginActionViewModel()
 		{
+			Input = new LoginActionInputModel();
 		}
+		#endregion
+		
+
 	}
 }

@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.AuctionObjects;
-using WebAuction.Models;
-
-namespace WebAuction.Controllers
+using Czf.App.WebAuction.Models;
+using Czf.App.WebAuction.Models.InputViewModel;
+namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
 	/// Description of Login.
@@ -18,7 +18,8 @@ namespace WebAuction.Controllers
 		
 		public ActionResult Index()
 		{			
-			return View();
+			LoginActionViewModel model = new LoginActionViewModel();
+			return View("Login",model);
 		}
 		
 		/// <summary>

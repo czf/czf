@@ -18,8 +18,8 @@ namespace Czf.Util.VersionControl
         /// <summary>
         /// Gets or sets the last commit which modified this file.
         /// </summary>
-        /// <value>The last commit number, as a string.</value>
-		public string LastCommit { get; set; }
+        /// <value>The last commit date, as int.</value>
+		public long LastCommitDateAsInt { get; set; }
 
         /// <summary>
         /// Gets or sets the error message in the event of a status lookup failure.
@@ -35,17 +35,17 @@ namespace Czf.Util.VersionControl
 		{
 			get
 			{
-				if ((Status == "normal") && (LastCommit != string.Empty))
+				if ((Status == "normal") && (LastCommitDateAsInt != 0))
 				{
-					return LastCommit;
+					return LastCommitDateAsInt.ToString();
 				}
-				else if (LastCommit == string.Empty)
+				else if (LastCommitDateAsInt == 0)
 				{
 					return Status;
 				}
 				else
 				{
-					return LastCommit + "." + Status;
+					return LastCommitDateAsInt + "." + Status;
 				}
 			}
 		}
@@ -60,7 +60,7 @@ namespace Czf.Util.VersionControl
 		public FileStatus()
 		{
 			Status = "unknown";
-			LastCommit = string.Empty;
+			LastCommitDateAsInt = 0;
 			ErrorMessage = string.Empty;
 		}
 
@@ -69,10 +69,10 @@ namespace Czf.Util.VersionControl
         /// </summary>
         /// <param name="status">The status.</param>
         /// <param name="lastCommit">The last commit.</param>
-		public FileStatus(string status, string lastCommit)
+		public FileStatus(string status, int lastCommit)
 		{
 			Status = status;
-			LastCommit = lastCommit;
+			LastCommitDateAsInt = lastCommit;
 			ErrorMessage = string.Empty;
 		}
 
@@ -82,10 +82,10 @@ namespace Czf.Util.VersionControl
         /// <param name="status">The status.</param>
         /// <param name="lastCommit">The last commit.</param>
         /// <param name="error">The error.</param>
-		public FileStatus(string status, string lastCommit, string error)
+		public FileStatus(string status, int lastCommit, string error)
 		{
 			Status = status;
-			LastCommit = lastCommit;
+			LastCommitDateAsInt = lastCommit;
 			ErrorMessage = error;
 		}
 

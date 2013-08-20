@@ -4,7 +4,7 @@
     <ProjectGuid>{EEE41376-7E15-4F76-8221-6B908F58FC8A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Czf.Utill.Build</RootNamespace>
     <AssemblyName>Czf.Util.Build</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -28,6 +28,7 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' " />
   <ItemGroup>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -48,6 +49,12 @@
     <Compile Include="AddSVNStatus.cs" />
     <Compile Include="BuildAssetConfig.cs" />
     <Compile Include="SortItems.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Czf.Util.VersionControl\Czf.Util.VersionControl.csproj">
+      <Project>{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}</Project>
+      <Name>Czf.Util.VersionControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

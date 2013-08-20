@@ -1,25 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
-  <UsingTask TaskName="AddAssetKey" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Ols.Core.Util.Build.dll" />
-  <UsingTask TaskName="AddSvnStatus" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Ols.Core.Util.Build.dll" />
-  <UsingTask TaskName="SortItems" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Ols.Core.Util.Build.dll" />
-  <UsingTask TaskName="BuildAssetConfig" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Ols.Core.Util.Build.dll" />
+  <UsingTask TaskName="AddAssetKey" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
+  <UsingTask TaskName="AddSvnStatus" AssemblyFile="D:\dev\Assemblies\Czf.Util.VersionControl\current\Czf.Util.VersionControl.dll" />
+  <UsingTask TaskName="SortItems" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
+  <UsingTask TaskName="BuildAssetConfig" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
   <UsingTask TaskName="CompressorTask" AssemblyFile="D:\dev\Assemblies\Yui.Compressor\current\Yahoo.Yui.Compressor.dll" />
-	<PropertyGroup>
+  <PropertyGroup>
     <ProjectGuid>{810DC096-98DE-4248-A8E4-E305455CEA81}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">WebAuction(local)</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>WebAuction</RootNamespace>
-    <AssemblyName>WebAuction</AssemblyName>
+    <RootNamespace>Czf.App.WebAuction</RootNamespace>
+    <AssemblyName>Czf.App.WebAuction</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <TargetFrameworkProfile>
-		<ProcessAssets Condition=" '$(ProcessAssets)' == '' ">false</ProcessAssets>
-    	<AssetsOutputFile Condition=" '$(AssetsOutputFile)' == '' ">Config\\assets.config</AssetsOutputFile>
-    	<DevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\Tools\\</DevTools>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile />
+    <ProcessAssets Condition=" '$(ProcessAssets)' == '' ">false</ProcessAssets>
+    <AssetsOutputFile Condition=" '$(AssetsOutputFile)' == '' ">Config\\assets.config</AssetsOutputFile>
+    <DevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\tools\\</DevTools>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
@@ -29,14 +28,26 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <RunCodeAnalysis>False</RunCodeAnalysis>
     <RunSourceAnalysis>False</RunSourceAnalysis>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <UseIISExpress>False</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)|$(Platform)' == 'Debug|AnyCPU') or ('$(Configuration)|$(Platform)' == 'WebAuction(local)|AnyCPU') ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Czf.App.WebAuction.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>bin\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -45,7 +56,20 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'WebAuction(local)' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\..\..\Assemblies\CastleWindsor\Current\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\..\..\..\..\Assemblies\CastleWindsor\Current\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\..\..\..\..\..\Assemblies\Elmah\current\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -76,39 +100,57 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\WebAuction%28local%29\appSettings.config" />
+    <None Include="Config\WebAuction%28local%29\castle.config" />
+    <None Include="Config\WebAuction%28local%29\connectionStrings.config" />
+    <None Include="Config\WebAuction%28local%29\elmah.config" />
+    <None Include="Config\WebAuction%28local%29\elmah.errorMail.config" />
+    <None Include="Config\WebAuction%28local%29\memcached.config" />
     <None Include="css\Site.css" />
     <None Include="Global.asax" />
     <None Include="packages.config" />
-    <None Include="Views\Home\Contact.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml">
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <None Include="Views\Login\Index.cshtml" />
     <None Include="Views\web.config" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Config\Release" />
+    <Folder Include="Config\WebAuction%28local%29" />
     <Folder Include="Models" />
     <Folder Include="Models\InputViewModel" />
     <Folder Include="ActionFilters" />
     <Folder Include="css" />
+    <Folder Include="Config" />
     <Folder Include="Scripts" />
+    <Folder Include="Views\Login" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Solution\Czf.Util.Common\Czf.Util.Common.csproj">
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Czf.Util.Common\Czf.Util.Common.csproj">
       <Project>{22F228A1-956C-44E1-AB81-9262E6B9CB0B}</Project>
       <Name>Czf.Util.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Solution\Domain.csproj">
+    <ProjectReference Include="..\..\Domain.csproj">
       <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Solution\StubAuctionSource\AuctionSource.csproj">
+    <ProjectReference Include="..\..\StubAuctionSource\AuctionSource.csproj">
       <Project>{23F7C225-9978-4EC1-9BE3-2DCF30862629}</Project>
       <Name>AuctionSource</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
-<Target Name="BeforeBuild"></Target>
-<Target Name="AddConfigFilesToContent">
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AddConfigFilesToContent">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;$(ProjectDir)\\Config\\$(SourceCommonConfigPath)&quot; &quot;$(ProjectDir)\\Config&quot; 1&gt;nul" Condition=" '$(SourceCommonConfigPath)' != ''" ContinueOnError="true" IgnoreExitCode="true">
     </Exec>
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;$(ProjectDir)\\Config\\$(SourceConfigPath)&quot; &quot;$(ProjectDir)\\Config&quot; 1&gt;nul" ContinueOnError="true" IgnoreExitCode="true">
@@ -190,7 +232,8 @@
       <MobileScriptFile Condition="(('$(ProcessAssets)' == 'true') and (@(JsToMergeForMobile) != ''))">Scripts\mobile.$(JsMergeForMobileRevisionAndStatus).js</MobileScriptFile>
       <TabletScriptFile Condition="(('$(ProcessAssets)' == 'true') and (@(JsToMergeForTablet) != ''))">Scripts\tablet.$(JsMergeForTabletRevisionAndStatus).js</TabletScriptFile>
     </PropertyGroup>
-    <BuildAssetConfig InputFiles="@(AssetListWithKey)" OutputFile="$(AssetsOutputFile)" DesktopCssFile="$(DesktopCssFile)" MobileCssFile="$(MobileCssFile)" TabletCssFile="$(TabletCssFile)" DesktopScriptFile="$(DesktopScriptFile)" MobileScriptFile="$(MobileScriptFile)" TabletScriptFile="$(TabletScriptFile)" />
+    <!--<BuildAssetConfig InputFiles="@(AssetListWithKey)" OutputFile="$(AssetsOutputFile)" DesktopCssFile="$(DesktopCssFile)" MobileCssFile="$(MobileCssFile)" TabletCssFile="$(TabletCssFile)" DesktopScriptFile="$(DesktopScriptFile)" MobileScriptFile="$(MobileScriptFile)" TabletScriptFile="$(TabletScriptFile)" />
+-->
     <ItemGroup>
       <Content Include="@(AssetsToProcess)" Condition="'$(ProcessAssets)' != 'true'" />
       <Content Include="@(AssetsToVersion)" Condition="'$(ProcessAssets)' != 'true'" />
@@ -226,4 +269,22 @@
   <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://a.dev.com/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Czf.Domain.Global;
+using System.IO;
 namespace Czf.App.WebAuction
 {
 	public class CzfWebAuction : HttpApplication
@@ -17,7 +18,6 @@ namespace Czf.App.WebAuction
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.Ignore("{resource}.axd/{*pathInfo}");
-			
 			routes.MapRoute(
 				"Default",
 				"{controller}/{action}/{id}",

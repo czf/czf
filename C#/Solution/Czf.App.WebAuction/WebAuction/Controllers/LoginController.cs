@@ -9,7 +9,7 @@ namespace Czf.App.WebAuction.Controllers
 	/// <summary>
 	/// Description of Login.
 	/// </summary>
-	public class Login : Controller
+	public class LoginController : Controller
 	{
 		/// <summary>
 		/// Source for Auction Data

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Ols.Core.Util.Subversion;
+using Czf.Util.VersionControl;
 using System.Text.RegularExpressions;
 
-namespace Ols.Core.Util.Build
+namespace Czf.Util.Build
 {
 	/// <summary>
 	/// Adds working copy subversion meta data to a file list.
@@ -16,7 +16,7 @@ namespace Ols.Core.Util.Build
 	{
 		#region Privates
 
-		int? _maxCommit;
+		long? _maxCommit;
 
 		#endregion
 
@@ -57,7 +57,7 @@ namespace Ols.Core.Util.Build
 		/// </summary>
 		/// <value>The last commit number, as a string.</value>
 		[Output]
-		public string MergeLastCommit
+		public string MergeLastCommitDateAsInt
 		{
 			get
 			{
@@ -74,17 +74,17 @@ namespace Ols.Core.Util.Build
 		{
 			get
 			{
-				if ((MergeFileStatus == "normal") && (MergeLastCommit != string.Empty))
+				if ((MergeFileStatus == "normal") && (MergeLastCommitDateAsInt != string.Empty))
 				{
-					return MergeLastCommit;
+					return MergeLastCommitDateAsInt;
 				}
-				else if (MergeLastCommit == string.Empty)
+				else if (MergeLastCommitDateAsInt == string.Empty)
 				{
 					return MergeFileStatus;
 				}
 				else
 				{
-					return MergeLastCommit.Replace(".normal", "").Replace("normal.", "") + "." + MergeFileStatus;
+					return MergeLastCommitDateAsInt.Replace(".normal", "").Replace("normal.", "") + "." + MergeFileStatus;
 				}
 			}
 		}
@@ -103,7 +103,7 @@ namespace Ols.Core.Util.Build
 			_maxCommit = null;
 			MergeFileStatus = String.Empty;
 
-			SubversionStatus svnStatus = new SubversionStatus();
+			GitStatus svnStatus = new GitStatus();
 			FileStatus fileStatus;
 			
 			if ((MatchFilenameFilter ?? String.Empty) == String.Empty)
@@ -116,25 +116,25 @@ namespace Ols.Core.Util.Build
 				OutputFiles = InputFiles.Where(i => filter.IsMatch(i.GetMetadata("Filename"))).ToArray();
 			}
 			
-			int commitNumber;
+			
 			foreach (ITaskItem file in OutputFiles)
 			{
 				fileStatus = svnStatus.GetFileStatus(file.ToString());
-				file.SetMetadata("SvnFileStatus", fileStatus.Status);
-				file.SetMetadata("SvnLastCommit", fileStatus.LastCommit);
-				file.SetMetadata("SvnRevisionAndStatus", fileStatus.RevisionAndStatus);
-				if (int.TryParse(fileStatus.LastCommit, out commitNumber))
+				file.SetMetadata("VersionControlFileStatus", fileStatus.Status);
+				file.SetMetadata("LastCommitDateAsInt", fileStatus.LastCommitDateAsInt.ToString());
+				file.SetMetadata("RevisionDateAndStatus", fileStatus.RevisionAndStatus);
+				if (fileStatus.LastCommitDateAsInt != 0)
 				{
 					if (_maxCommit.HasValue)
 					{
-						if (commitNumber > _maxCommit.Value)
+						if (fileStatus.LastCommitDateAsInt > _maxCommit.Value)
 						{
-							_maxCommit = commitNumber;
+							_maxCommit = fileStatus.LastCommitDateAsInt;
 						}
 					}
 					else
 					{
-						_maxCommit = commitNumber;
+						_maxCommit = fileStatus.LastCommitDateAsInt;
 					}
 				}
 				if (MergeFileStatus.IndexOf(fileStatus.Status) == -1)

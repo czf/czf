@@ -37,7 +37,7 @@ namespace Czf.Util.VersionControl
 			command.StartInfo.RedirectStandardOutput = true;
 			command.StartInfo.RedirectStandardError = true;
 			command.StartInfo.FileName = _gitPath;
-			command.StartInfo.Arguments = "status \"" + file + "\" --porcelain";
+			command.StartInfo.Arguments = "status --porcelain \"" + file + "\"" ;
 			command.Start();
 			
 			string output = command.StandardOutput.ReadToEnd();
@@ -45,7 +45,7 @@ namespace Czf.Util.VersionControl
 			command.WaitForExit();
 			if (error.Length > 0)
 			{
-				return new FileStatus("error", string.Empty, error);
+				return new FileStatus("error", 0, error);
 			}
 			else
 			{
@@ -53,16 +53,28 @@ namespace Czf.Util.VersionControl
 				FileStatus fileStatus = new FileStatus();
 
 				
-				if (output.Length == 0)
+				if (output.Length >2)
 				{
-					fileStatus.Status = wcStatusNode.Attributes["item"].Value;
-					if ((fileStatus.Status == "normal")
-						|| (fileStatus.Status == "modified"))
+					fileStatus.Status = output.Substring(0,2);
+					string[] states = {"M","A","U","D"};
+					if (states.Any(x=>output.Contains(x)))
 					{
-						XmlNode commitNode = wcStatusNode.SelectSingleNode("commit");
-						if (commitNode != null)
-							fileStatus.LastCommit = commitNode.Attributes["revision"].Value;
+						command.StartInfo.Arguments = "log --format=%ad \""+ file + "\"";
+							command.Start();
+						output = command.StandardOutput.ReadToEnd();
+						if (output != null && output != string.Empty)
+						{
+							DateTime lastCommit = DateTime.Now;
+							if(DateTime.TryParse(output,out lastCommit))
+							{
+								fileStatus.LastCommitDateAsInt = lastCommit.Ticks;
+							}
+						}
+							
 					}
+				}
+				else {
+					fileStatus.Status = "normal";
 				}
 				return fileStatus;
 			}

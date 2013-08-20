@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace Ols.Core.Util.Build
+namespace Czf.Util.Build
 {
 	/// <summary>
 	/// Adds Asset config metadata to a file list.

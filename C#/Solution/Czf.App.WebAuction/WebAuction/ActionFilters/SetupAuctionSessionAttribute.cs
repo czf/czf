@@ -39,6 +39,7 @@ namespace Czf.App.WebAuction.ActionFilters
 					if(uid.HasValue)
 					{
 						session.User = controller.AuctionSource.Get<User>(uid.Value);
+						
 					}
 				}
 				

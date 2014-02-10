@@ -22,7 +22,7 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -30,11 +30,13 @@
     <RunSourceAnalysis>False</RunSourceAnalysis>
     <NoWin32Manifest>False</NoWin32Manifest>
     <UseIISExpress>False</UseIISExpress>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+	
   </PropertyGroup>
   <PropertyGroup Condition=" ('$(Configuration)|$(Platform)' == 'Debug|AnyCPU') or ('$(Configuration)|$(Platform)' == 'WebAuction(local)|AnyCPU') ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -59,6 +61,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'WebAuction(local)' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <StartAction>Project</StartAction>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -91,13 +94,18 @@
     <Compile Include="ActionFilters\SetupAuctionSessionAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SettingsController.cs.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\Temp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\InputViewModel\LoginActionInputModel.cs" />
     <Compile Include="Models\LoginActionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\ControllerName.cs">
+      <DependentUpon>ControllerName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\WebAuction%28local%29\appSettings.config" />
@@ -113,6 +121,10 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <None Include="Templates\ControllerName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ControllerName.cs</LastGenOutput>
+    </None>
     <None Include="Views\Login\Index.cshtml" />
     <None Include="Views\web.config" />
     <None Include="web.config" />
@@ -125,6 +137,7 @@
     <Folder Include="ActionFilters" />
     <Folder Include="css" />
     <Folder Include="Config" />
+    <Folder Include="Templates" />
     <Folder Include="Scripts" />
     <Folder Include="Views\Login" />
   </ItemGroup>
@@ -148,7 +161,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+<!-- process *.tt templates on each build  -->
+<PropertyGroup>
+    <TransformOnBuild>true</TransformOnBuild>
+</PropertyGroup>
   <Target Name="BeforeBuild">
+	<ItemGroup>
+      <!--<T4File Include="Templates\Asset.tt" />-->
+      <T4File Include="Templates\ControllerName.tt" />
+      <!--<T4File Include="Templates\ViewName.tt" />-->
+    </ItemGroup>
+    <Exec Command="&quot;$(DevTools)TextTransform.exe&quot; &quot;%(T4File.FullPath)&quot;" />
   </Target>
   <Target Name="AddConfigFilesToContent">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;$(ProjectDir)\\Config\\$(SourceCommonConfigPath)&quot; &quot;$(ProjectDir)\\Config&quot; 1&gt;nul" Condition=" '$(SourceCommonConfigPath)' != ''" ContinueOnError="true" IgnoreExitCode="true">

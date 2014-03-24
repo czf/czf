@@ -162,3 +162,11 @@ pip-log.txt
 # Mac crap
 .DS_Store
 /C#/Solution/AuctionOutput
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/appSettings.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/assets.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/castle.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/connectionStrings.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.errorFilter.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.errorMail.config
+C#/Solution/Czf.App.WebAuction/WebAuction/Config/memcached.config

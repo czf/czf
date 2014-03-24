@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Diagnostics;
-
+using System.IO;
 namespace Czf.Util.VersionControl
 {
     /// <summary>
@@ -31,20 +31,31 @@ namespace Czf.Util.VersionControl
         /// <returns>A <see cref="FileStatus" /> for the given file.</returns>
 		public FileStatus GetFileStatus(string file)
 		{
+			
+			
+			
 			Process command = new Process();
+			
 			command.StartInfo.UseShellExecute = false;
 			command.StartInfo.CreateNoWindow = true;
 			command.StartInfo.RedirectStandardOutput = true;
 			command.StartInfo.RedirectStandardError = true;
+			//command.StartInfo.FileName = @"D:\Program Files (x86)\Git\cmd\" + _gitPath;
+			
+			
 			command.StartInfo.FileName = _gitPath;
 			command.StartInfo.Arguments = "status --porcelain \"" + file + "\"" ;
-			command.Start();
 			
+			File.WriteAllText("outputTest.txt", "FULL: " + command.StartInfo.WorkingDirectory+ " " + command.StartInfo.FileName+ " "+ command.StartInfo.Arguments);
+			command.Start();
+			File.WriteAllText("outputTest2.txt",file);
 			string output = command.StandardOutput.ReadToEnd();
 			string error = command.StandardError.ReadToEnd();
+			File.WriteAllText("outputTest.txt3", output +  "\n\n" + error);
 			command.WaitForExit();
 			if (error.Length > 0)
 			{
+				Console.WriteLine("error with file: " + file);
 				return new FileStatus("error", 0, error);
 			}
 			else

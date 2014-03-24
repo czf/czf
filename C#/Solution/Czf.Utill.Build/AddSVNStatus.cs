@@ -12,7 +12,7 @@ namespace Czf.Util.Build
 	/// <summary>
 	/// Adds working copy subversion meta data to a file list.
 	/// </summary>
-	public class AddSvnStatus : Task
+	public class AddVersionControlStatus : Task
 	{
 		#region Privates
 
@@ -103,7 +103,7 @@ namespace Czf.Util.Build
 			_maxCommit = null;
 			MergeFileStatus = String.Empty;
 
-			GitStatus svnStatus = new GitStatus();
+			GitStatus versionControlStatus = new GitStatus();
 			FileStatus fileStatus;
 			
 			if ((MatchFilenameFilter ?? String.Empty) == String.Empty)
@@ -119,7 +119,7 @@ namespace Czf.Util.Build
 			
 			foreach (ITaskItem file in OutputFiles)
 			{
-				fileStatus = svnStatus.GetFileStatus(file.ToString());
+				fileStatus = versionControlStatus.GetFileStatus(file.ToString());
 				file.SetMetadata("VersionControlFileStatus", fileStatus.Status);
 				file.SetMetadata("LastCommitDateAsInt", fileStatus.LastCommitDateAsInt.ToString());
 				file.SetMetadata("RevisionDateAndStatus", fileStatus.RevisionAndStatus);

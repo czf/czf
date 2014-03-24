@@ -8,7 +8,6 @@
  */
 using System;
 using System.Web.Mvc;
-
 namespace Czf.App.WebAuction.Controllers
 {
 	public class HomeController : Controller

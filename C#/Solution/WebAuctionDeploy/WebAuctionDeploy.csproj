@@ -4,15 +4,14 @@
     <ProjectGuid>{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">WebAuction(local)</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <RootNamespace>WebAuctionDeploy</RootNamespace>
-    <AssemblyName>WebAuctionDeploy</AssemblyName>
+<!--    <RootNamespace>WebAuctionDeploy</RootNamespace>
+    <AssemblyName>WebAuctionDeploy</AssemblyName>-->
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SolutionDir Condition=" '$(SolutionDir)' == '' ">..\</SolutionDir>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(MSBuildProjectDirectory)\\..\\BuildOutput</OutputPath>
     <OlsDevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\Tools\\</OlsDevTools>
-    <ClassicSite>$(SolutionDir)ClassicSite</ClassicSite>
+<!--    <ClassicSite>$(SolutionDir)ClassicSite</ClassicSite>-->
     <ExecuteSqlScripts Condition=" '$(ExecuteSqlScripts)' == '' ">false</ExecuteSqlScripts>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WebAuctionRelease|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -27,22 +26,30 @@
       <ProjectOutputPath>$(SolutionDir)Czf.App.WebAuction\\WebAuction\\bin</ProjectOutputPath>
     </WebProject>
   </ItemGroup>
-  <ItemGroup>
+	<ItemGroup>
     <ProjectReference Include="..\Czf.App.WebAuction\WebAuction\WebAuction.csproj">
-      <Project>{810DC096-98DE-4248-A8E4-E305455CEA81}</Project>
-      <Name>WebAuction</Name>
+      <Project>{44352475-efdd-409f-a91d-8c8fa3383d23}</Project>
+      <Name>Onlineshoes</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="MergeWebProjects">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;%(WebProject.ProjectOutputPath)&quot; &quot;$(OutputPath)\\bin&quot; /NP 1&gt;nul" ContinueOnError="true" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <MSBuild Projects="%(WebProject.Identity)" Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\" Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
+    <MSBuild Projects="%(WebProject.Identity)" 
+             Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\"
+             Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
     <OnError ExecuteTargets="MessageErrorHandler" />
   </Target>
   <Target Name="Build">

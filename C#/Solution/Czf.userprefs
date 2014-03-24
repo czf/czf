@@ -1,63 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Interfaces/Consumers/IAuctionConsumer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BaseClasses\IdentifiedByInt.cs">
     <Files>
-      <File FileName="../WebAuction/Controllers/HomeController.cs" Line="19" Column="4" />
-      <File FileName="BaseClasses/IdentifiedByInt.cs" Line="16" Column="15" />
-      <File FileName="Interfaces/Sources/IAuctionSource.cs" Line="11" Column="11" />
-      <File FileName="BaseClasses/BaseAuctionItem.cs" Line="20" Column="72" />
-      <File FileName="AuctionObjects/BidItem.cs" Line="42" Column="3" />
-      <File FileName="Interfaces/Consumers/IAuctionConsumer.cs" Line="19" Column="3" />
+      <File FileName="BaseClasses\IdentifiedByInt.cs" Line="16" Column="15" />
+      <File FileName="Interfaces\Sources\IAuctionSource.cs" Line="1" Column="1" />
+      <File FileName="BaseClasses\BaseAuctionItem.cs" Line="1" Column="1" />
+      <File FileName="AuctionObjects\BidItem.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Czf.App" expanded="True">
-            <Node name="WebAuction" expanded="True">
-              <Node name="Controllers" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Czf.Domain" expanded="True">
-            <Node name="Domain" expanded="True">
-              <Node name="AuctionObjects" expanded="True" />
-              <Node name="BaseClasses" expanded="True" />
-              <Node name="Interfaces" expanded="True">
-                <Node name="Consumers" expanded="True">
-                  <Node name="IAuctionConsumer.cs" selected="True" />
-                </Node>
-                <Node name="Sources" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State expanded="True">
-          <Node name="Czf.Domain" expanded="True">
-            <Node name="Domain" expanded="True">
-              <Node name="Czf" expanded="True">
-                <Node name="Domain" expanded="True">
-                  <Node name="AuctionObjects" expanded="True" />
-                </Node>
-                <Node name="Interfaces" expanded="True">
-                  <Node name="Sources" expanded="True">
-                    <Node name="Czf.Interfaces.Sources.IAuctionSource" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Czf.Sources">
-            <Option id="ShowProjects" value="True" />
-            <Option id="NestedNamespaces" value="True" />
-            <Option id="PublicProtectedApiOnly" value="False" />
-            <Option id="PublicApiOnly" value="False" />
-            <Option id="GroupByAccess" value="False" />
-            <Option id="GroupByType" value="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

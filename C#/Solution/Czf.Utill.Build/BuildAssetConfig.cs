@@ -13,7 +13,7 @@ namespace Ols.Core.Util.Build
 	/// </summary>
 	public class BuildAssetConfig : Task
 	{
-		#region Properties
+		#region Privates
 
 		#endregion
 
@@ -81,6 +81,7 @@ namespace Ols.Core.Util.Build
         /// </returns>
 		public override bool Execute()
 		{
+			Console.WriteLine("*******************************************************************************************HERE");
 			XmlDocument assetsXml = new XmlDocument();
 			assetsXml.AppendChild(assetsXml.CreateXmlDeclaration("1.0", "utf-8", null));
 			Dictionary<string, XmlNode> sections = new Dictionary<string,XmlNode>();

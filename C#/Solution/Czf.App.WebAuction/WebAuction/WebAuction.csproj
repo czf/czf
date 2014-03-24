@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <UsingTask TaskName="AddAssetKey" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
-  <UsingTask TaskName="AddSvnStatus" AssemblyFile="D:\dev\Assemblies\Czf.Util.VersionControl\current\Czf.Util.VersionControl.dll" />
+  <UsingTask TaskName="AddVersionControlStatus" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
   <UsingTask TaskName="SortItems" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
   <UsingTask TaskName="BuildAssetConfig" AssemblyFile="D:\dev\Assemblies\Czf.Util.Build\current\Czf.Util.Build.dll" />
   <UsingTask TaskName="CompressorTask" AssemblyFile="D:\dev\Assemblies\Yui.Compressor\current\Yahoo.Yui.Compressor.dll" />
@@ -13,6 +13,7 @@
     <RootNamespace>Czf.App.WebAuction</RootNamespace>
     <AssemblyName>Czf.App.WebAuction</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>true</MvcBuildViews>
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <TargetFrameworkProfile />
@@ -31,7 +32,6 @@
     <NoWin32Manifest>False</NoWin32Manifest>
     <UseIISExpress>False</UseIISExpress>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-	
   </PropertyGroup>
   <PropertyGroup Condition=" ('$(Configuration)|$(Platform)' == 'Debug|AnyCPU') or ('$(Configuration)|$(Platform)' == 'WebAuction(local)|AnyCPU') ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +63,10 @@
     <StartAction>Project</StartAction>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WebAuction(local)|AnyCPU' ">
+    <!--<SourceCommonConfigPath>common.dev</SourceCommonConfigPath>-->
+    <SourceConfigPath>WebAuction(local)</SourceConfigPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\..\..\..\Assemblies\CastleWindsor\Current\Castle.Core.dll</HintPath>
@@ -74,6 +78,7 @@
       <HintPath>..\..\..\..\..\..\Assemblies\Elmah\current\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
@@ -95,7 +100,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\Temp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -108,12 +112,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\WebAuction%28local%29\appSettings.config" />
-    <None Include="Config\WebAuction%28local%29\castle.config" />
-    <None Include="Config\WebAuction%28local%29\connectionStrings.config" />
-    <None Include="Config\WebAuction%28local%29\elmah.config" />
-    <None Include="Config\WebAuction%28local%29\elmah.errorMail.config" />
-    <None Include="Config\WebAuction%28local%29\memcached.config" />
+    <Content Include="Config\WebAuction%28local%29\appSettings.config" />
+    <Content Include="Config\WebAuction%28local%29\castle.config" />
+    <Content Include="Config\WebAuction%28local%29\connectionStrings.config" />
+    <Content Include="Config\WebAuction%28local%29\elmah.config" />
+    <Content Include="Config\WebAuction%28local%29\elmah.errorMail.config" />
+    <Content Include="Config\WebAuction%28local%29\memcached.config" />
+    <MinifyAndMerge Include="css\global.100.site.css" />
     <None Include="css\Site.css" />
     <None Include="Global.asax" />
     <None Include="packages.config" />
@@ -121,9 +126,11 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <MinifyAndMerge Include="Scripts\global.100.site.js" />
     <None Include="Templates\ControllerName.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ControllerName.cs</LastGenOutput>
+      <CustomToolNamespace>Czf.App.WebAuction</CustomToolNamespace>
     </None>
     <None Include="Views\Login\Index.cshtml" />
     <None Include="Views\web.config" />
@@ -161,17 +168,21 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
-<!-- process *.tt templates on each build  -->
-<PropertyGroup>
+  <!-- process *.tt templates on each build  -->
+  <PropertyGroup>
     <TransformOnBuild>true</TransformOnBuild>
-</PropertyGroup>
+  </PropertyGroup>
   <Target Name="BeforeBuild">
-	<ItemGroup>
+    <ItemGroup>
       <!--<T4File Include="Templates\Asset.tt" />-->
       <T4File Include="Templates\ControllerName.tt" />
       <!--<T4File Include="Templates\ViewName.tt" />-->
     </ItemGroup>
-    <Exec Command="&quot;$(DevTools)TextTransform.exe&quot; &quot;%(T4File.FullPath)&quot;" />
+    <!--	-c=&quot;%(T4File.Filename).cs&quot;-->
+    <Exec Command="&quot;$(DevTools)\MonoDevelop.TextTemplating\TextTransform.exe&quot; &quot;%(T4File.FullPath)&quot; -o &quot;%(T4File.RootDir)%(T4File.Directory)%(T4File.Filename).cs&quot; " />
+    <CallTarget Targets="AddConfigFilesToContent" />
+    <CallTarget Targets="ProcessAssetFiles" />
+    <OnError ExecuteTargets="MessageErrorHandler" />
   </Target>
   <Target Name="AddConfigFilesToContent">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;$(ProjectDir)\\Config\\$(SourceCommonConfigPath)&quot; &quot;$(ProjectDir)\\Config&quot; 1&gt;nul" Condition=" '$(SourceCommonConfigPath)' != ''" ContinueOnError="true" IgnoreExitCode="true">
@@ -189,34 +200,34 @@
       <AssetsToProcess Include="@(MinifyAndVersion)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.css') " />
       <AssetsToProcess Include="@(MinifyAndVersion)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.js') " />
     </ItemGroup>
-    <AddSvnStatus InputFiles="@(MinifyAndVersion)" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css' or '%(Extension)' == '.js' or '%(Extension)' == '.swf' or '%(Extension)' == '.xsl') ">
+    <AddVersionControlStatus InputFiles="@(MinifyAndVersion)" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css' or '%(Extension)' == '.js' or '%(Extension)' == '.swf' or '%(Extension)' == '.xsl') ">
       <Output TaskParameter="OutputFiles" ItemName="AssetsToProcess" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="MergeRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
       <Output TaskParameter="OutputFiles" ItemName="CssToMergeForDesktop" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="CssMergeForDesktopRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(mobile|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(mobile|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
       <Output TaskParameter="OutputFiles" ItemName="CssToMergeForMobile" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="CssMergeForMobileRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(tablet|desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(tablet|desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css') ">
       <Output TaskParameter="OutputFiles" ItemName="CssToMergeForTablet" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="CssMergeForTabletRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
       <Output TaskParameter="OutputFiles" ItemName="JsToMergeForDesktop" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="JsMergeForDesktopRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(mobile|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(mobile|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
       <Output TaskParameter="OutputFiles" ItemName="JsToMergeForMobile" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="JsMergeForMobileRevisionAndStatus" />
-    </AddSvnStatus>
-    <AddSvnStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(tablet|desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
+    </AddVersionControlStatus>
+    <AddVersionControlStatus InputFiles="@(MinifyAndMerge)" MatchFilenameFilter=".*(tablet|desktop|global).*" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.js') ">
       <Output TaskParameter="OutputFiles" ItemName="JsToMergeForTablet" />
       <Output TaskParameter="MergeRevisionAndStatus" PropertyName="JsMergeForTabletRevisionAndStatus" />
-    </AddSvnStatus>
+    </AddVersionControlStatus>
     <ItemGroup>
       <AssetsToVersion Include="@(VersionOnly)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.css') " />
       <AssetsToVersion Include="@(VersionOnly)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.js') " />
@@ -225,9 +236,9 @@
       <AssetsToVersion Include="@(VersionOnly)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.xsl') " />
       <AssetsToProcess Include="@(MinifyAndVersion)" Condition=" ('$(ProcessAssets)' != 'true') and ('%(Extension)' == '.xsl') " />
     </ItemGroup>
-    <AddSvnStatus InputFiles="@(VersionOnly)" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css' or '%(Extension)' == '.js' or '%(Extension)' == '.swf' or '%(Extension)' == '.xsl') ">
+    <AddVersionControlStatus InputFiles="@(VersionOnly)" Condition=" ('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css' or '%(Extension)' == '.js' or '%(Extension)' == '.swf' or '%(Extension)' == '.xsl') ">
       <Output TaskParameter="OutputFiles" ItemName="AssetsToVersion" />
-    </AddSvnStatus>
+    </AddVersionControlStatus>
     <ItemGroup>
       <Content Include="@(MinifyAndVersion)" Exclude="@(AssetsToProcess)" />
       <Content Include="@(VersionOnly)" Exclude="@(AssetsToVersion)" />
@@ -255,8 +266,7 @@
       <MobileScriptFile Condition="(('$(ProcessAssets)' == 'true') and (@(JsToMergeForMobile) != ''))">Scripts\mobile.$(JsMergeForMobileRevisionAndStatus).js</MobileScriptFile>
       <TabletScriptFile Condition="(('$(ProcessAssets)' == 'true') and (@(JsToMergeForTablet) != ''))">Scripts\tablet.$(JsMergeForTabletRevisionAndStatus).js</TabletScriptFile>
     </PropertyGroup>
-    <!--<BuildAssetConfig InputFiles="@(AssetListWithKey)" OutputFile="$(AssetsOutputFile)" DesktopCssFile="$(DesktopCssFile)" MobileCssFile="$(MobileCssFile)" TabletCssFile="$(TabletCssFile)" DesktopScriptFile="$(DesktopScriptFile)" MobileScriptFile="$(MobileScriptFile)" TabletScriptFile="$(TabletScriptFile)" />
--->
+    <BuildAssetConfig InputFiles="@(AssetListWithKey)" OutputFile="$(AssetsOutputFile)" DesktopCssFile="$(DesktopCssFile)" MobileCssFile="$(MobileCssFile)" TabletCssFile="$(TabletCssFile)" DesktopScriptFile="$(DesktopScriptFile)" MobileScriptFile="$(MobileScriptFile)" TabletScriptFile="$(TabletScriptFile)" />
     <ItemGroup>
       <Content Include="@(AssetsToProcess)" Condition="'$(ProcessAssets)' != 'true'" />
       <Content Include="@(AssetsToVersion)" Condition="'$(ProcessAssets)' != 'true'" />
@@ -266,23 +276,23 @@
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForDesktop)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(DesktopCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForDesktop) != ''))" />
     <SortItems InputFileList="@(CssToMergeForMobile)" Condition="'$(ProcessAssets)' == 'true'">
-      <Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForMobile" />
+    	<Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForMobile" />
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForMobile)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(MobileCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForMobile) != ''))" />
     <SortItems InputFileList="@(CssToMergeForTablet)" Condition="'$(ProcessAssets)' == 'true'">
-      <Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForTablet" />
+    	<Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForTablet" />
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForTablet)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(TabletCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForTablet) != ''))" />
     <SortItems InputFileList="@(JsToMergeForDesktop)" Condition="'$(ProcessAssets)' == 'true'">
-      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForDesktop" />
+    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForDesktop" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForDesktop)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(DesktopScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForDesktop) != ''))" />
     <SortItems InputFileList="@(JsToMergeForMobile)" Condition="'$(ProcessAssets)' == 'true'">
-      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForMobile" />
+    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForMobile" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForMobile)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(MobileScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForMobile) != ''))" />
     <SortItems InputFileList="@(JsToMergeForTablet)" Condition="'$(ProcessAssets)' == 'true'">
-      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForTablet" />
+    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForTablet" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForTablet)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(TabletScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForTablet) != ''))" />
     <CompressorTask CssFiles="%(AssetsToProcess.Identity)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)%(AssetsToProcess.RelativeDir)%(AssetsToProcess.Filename).%(AssetsToProcess.SvnRevisionAndStatus)%(AssetsToProcess.Extension)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css')" />

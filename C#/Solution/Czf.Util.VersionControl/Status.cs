@@ -46,12 +46,12 @@ namespace Czf.Util.VersionControl
 			command.StartInfo.FileName = _gitPath;
 			command.StartInfo.Arguments = "status --porcelain \"" + file + "\"" ;
 			
-			File.WriteAllText("outputTest.txt", "FULL: " + command.StartInfo.WorkingDirectory+ " " + command.StartInfo.FileName+ " "+ command.StartInfo.Arguments);
+			//File.WriteAllText("outputTest.txt", "FULL: " + command.StartInfo.WorkingDirectory+ " " + command.StartInfo.FileName+ " "+ command.StartInfo.Arguments);
 			command.Start();
-			File.WriteAllText("outputTest2.txt",file);
+			//File.WriteAllText("outputTest2.txt",file);
 			string output = command.StandardOutput.ReadToEnd();
 			string error = command.StandardError.ReadToEnd();
-			File.WriteAllText("outputTest.txt3", output +  "\n\n" + error);
+			//File.WriteAllText("outputTest.txt3", output +  "\n\n" + error);
 			command.WaitForExit();
 			if (error.Length > 0)
 			{

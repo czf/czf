@@ -120,6 +120,7 @@
     <Content Include="Config\WebAuction%28local%29\memcached.config" />
     <MinifyAndMerge Include="css\global.100.site.css" />
     <None Include="css\Site.css" />
+    <Content Include="css\StyleSheetNotFound.css" />
     <None Include="Global.asax" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Contact.cshtml">
@@ -127,6 +128,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <MinifyAndMerge Include="Scripts\global.100.site.js" />
+    <Content Include="Scripts\ScriptNotFound.js" />
     <None Include="Templates\ControllerName.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ControllerName.cs</LastGenOutput>
@@ -276,23 +278,23 @@
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForDesktop)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(DesktopCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForDesktop) != ''))" />
     <SortItems InputFileList="@(CssToMergeForMobile)" Condition="'$(ProcessAssets)' == 'true'">
-    	<Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForMobile" />
+      <Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForMobile" />
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForMobile)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(MobileCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForMobile) != ''))" />
     <SortItems InputFileList="@(CssToMergeForTablet)" Condition="'$(ProcessAssets)' == 'true'">
-    	<Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForTablet" />
+      <Output TaskParameter="OutputFileList" ItemName="SortedCssToMergeForTablet" />
     </SortItems>
     <CompressorTask CssFiles="@(SortedCssToMergeForTablet)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)$(TabletCssFile)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedCssToMergeForTablet) != ''))" />
     <SortItems InputFileList="@(JsToMergeForDesktop)" Condition="'$(ProcessAssets)' == 'true'">
-    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForDesktop" />
+      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForDesktop" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForDesktop)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(DesktopScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForDesktop) != ''))" />
     <SortItems InputFileList="@(JsToMergeForMobile)" Condition="'$(ProcessAssets)' == 'true'">
-    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForMobile" />
+      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForMobile" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForMobile)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(MobileScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForMobile) != ''))" />
     <SortItems InputFileList="@(JsToMergeForTablet)" Condition="'$(ProcessAssets)' == 'true'">
-    	<Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForTablet" />
+      <Output TaskParameter="OutputFileList" ItemName="SortedJsToMergeForTablet" />
     </SortItems>
     <CompressorTask JavaScriptFiles="@(SortedJsToMergeForTablet)" ObfuscateJavaScript="True" PreserveAllSemicolons="False" DisableOptimizations="Nope" EncodingType="Default" DeleteJavaScriptFiles="false" LineBreakPosition="-1" JavaScriptOutputFile="$(WebProjectOutputDir)$(TabletScriptFile)" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="(('$(ProcessAssets)' == 'true') and (@(SortedJsToMergeForTablet) != ''))" />
     <CompressorTask CssFiles="%(AssetsToProcess.Identity)" DeleteCssFiles="false" CssOutputFile="$(WebProjectOutputDir)%(AssetsToProcess.RelativeDir)%(AssetsToProcess.Filename).%(AssetsToProcess.SvnRevisionAndStatus)%(AssetsToProcess.Extension)" CssCompressionType="YuiStockCompression" DisableOptimizations="Nope" EncodingType="Default" LineBreakPosition="-1" LoggingType="ALittleBit" ThreadCulture="en-us" IsEvalIgnored="false" Condition="('$(ProcessAssets)' == 'true') and ('%(Extension)' == '.css')" />

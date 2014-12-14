@@ -7,20 +7,31 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-
+using Czf.Domain.Interfaces.Consumers;
+using Czf.Domain.Interfaces.Sources;
+using Czf.Domain.AuctionObjects;
 namespace Czf.App.WebAuction.Models.InputViewModel
 {
 	/// <summary>
 	/// Description of LoginActionInputModel.
 	/// </summary>
-	public class LoginActionInputModel
+	public class LoginActionInputModel: IAuctionSourceConsumer
 	{
 		#region Properties
 		/// <summary>
 		/// gets or sets the UserId 
 		/// </summary>
 		public int? UserId {get; set;} 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IAuctionSource AuctionSource { get; set;}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		public User SubmittedUser { get; protected set; }
 		#endregion
 		#region Constructor
 		/// <summary>
@@ -48,7 +59,13 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		public bool CheckValidity()
 		{
 			bool result = false;
-			result = UserId.HasValue;
+			
+			if(UserId.HasValue)
+			{
+				SubmittedUser = AuctionSource.GetByAlternateKey<User>(User.ALTKEY_BidNumber, UserId.Value);
+			}
+			result = SubmittedUser != null;
+			
 			return result;
 		}
 		

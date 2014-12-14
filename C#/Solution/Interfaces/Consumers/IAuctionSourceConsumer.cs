@@ -12,10 +12,13 @@ using Czf.Domain.Interfaces.Sources;
 namespace Czf.Domain.Interfaces.Consumers
 {
 	/// <summary>
-	/// Description of IAuctionConsumer.
+	/// Has a property of IAuctionSource
 	/// </summary>
 	public interface IAuctionSourceConsumer
 	{
+		/// <summary>
+		/// The AuctionSource reference.
+		/// </summary>
 		IAuctionSource AuctionSource {get; set;} 
 	}
 }

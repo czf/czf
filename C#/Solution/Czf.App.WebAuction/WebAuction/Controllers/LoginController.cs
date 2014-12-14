@@ -4,17 +4,16 @@ using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.AuctionObjects;
 using Czf.App.WebAuction.Models;
 using Czf.App.WebAuction.Models.InputViewModel;
+using Czf.Mvc.Common.ActionFilters;
+using Czf.Mvc.Common.Controllers;
 namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
 	/// Description of Login.
 	/// </summary>
-	public class LoginController : Controller
+	public class LoginController : BaseAuctionController
 	{
-		/// <summary>
-		/// Source for Auction Data
-		/// </summary>
-		IAuctionSource AuctionSource {get; set;} 
+
 		
 		public ActionResult Index()
 		{			
@@ -23,17 +22,17 @@ namespace Czf.App.WebAuction.Controllers
 		}
 		
 		/// <summary>
-		/// Accepts valid login usernames
+		/// Validates a user login.
 		/// </summary>
-		/// <param name="username"></param>
+		/// <param name="input"></param>
 		/// <returns></returns>
-		public ActionResult LoginAction(int? username)
+		[SetInputSources]
+		public ActionResult LoginAction(LoginActionInputModel input)
 		{
 			User user = null;
-			if (username.HasValue) {
-				user = AuctionSource.Get<User>(username.Value);
+			if (input.CheckValidity()) {
+				user = input.SubmittedUser;
 				//Set user state/cookies
-			
 			}
 			return View("LoggedIn", new LoginActionViewModel());
 		}

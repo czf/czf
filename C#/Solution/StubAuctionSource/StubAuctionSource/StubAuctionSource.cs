@@ -79,6 +79,12 @@ namespace Czf.Sources.StubAuctionSource
 			return result;
 		}
 		
+		public T GetByAlternateKey<T>(string KeyName, object KeyObject) where T : class
+		{
+			throw new NotImplementedException();
+			//TODO Implement a getter for each Tuple<T,string>(typeof(T), KeyName) that casts keyobject to the key value and compares to a property on T
+		}
+		
 		public List<ChildT> GetRelatedById<ChildT, ParentT>(int id) where ChildT : class where ParentT : class
 		{
 			throw new NotImplementedException();

@@ -18,13 +18,23 @@ namespace Czf.Domain.AuctionObjects
 	/// </summary>
 	public class User : IdentifiedByInt
 	{
+		#region Privates
 		private List<Bid> _userBids = null;
-		
+		#endregion
+
+		#region Constants
+		public static readonly string ALTKEY_BidNumber = "BidNumber";
+		#endregion
+		#region Properties
 		public IAuctionSource AuctionSource {get; set;} 
 		
 		public Name Name {get; set;} 
 		
+		/// <summary>
+		/// UserName is the bidnumber of the user
+		/// </summary>
 		public string UserName {get; set;} 
+		
 		
 		public List<Bid> UserBids 
 		{
@@ -37,7 +47,7 @@ namespace Czf.Domain.AuctionObjects
 				return _userBids;
 			}
 		}
-		
+		#endregion
 		#region Constructors
 		public User()
 		{

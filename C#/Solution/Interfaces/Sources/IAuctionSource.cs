@@ -18,6 +18,9 @@ namespace Czf.Domain.Interfaces.Sources
 		T Get<T>(int id)
 			where T : class;
 		
+		T GetByAlternateKey<T>(string KeyName, object KeyObject)
+			where T : class;
+		
 		List<ChildT> GetRelatedById<ChildT,ParentT>(int id)
 			where ChildT : class
 			where ParentT : class;

@@ -51,13 +51,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StubAuctionSource.cs" />
+    <Compile Include="StubAuctionSource\StubAuctionSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.csproj">
       <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CacheAuctionSource" />
+    <Folder Include="SqlAuctionSource" />
+    <Folder Include="StubAuctionSource" />
+    <Folder Include="StubAuctionSource\StubAuctionSourceHelpers" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

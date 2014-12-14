@@ -52,6 +52,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc" />
     <Reference Include="System.Web.Routing">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -61,9 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ActionFilters" />
+    <Folder Include="Controllers" />
     <Folder Include="Routing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\SetInputSource.cs" />
+    <Compile Include="Controllers\BaseAuctionController.cs" />
     <Compile Include="Routing\Routing.cs" />
   </ItemGroup>
   <ItemGroup>

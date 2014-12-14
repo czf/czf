@@ -1,32 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-# SharpDevelop 4.4
+# SharpDevelop 5.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.App", "Czf.App", "{8607B1FA-1B7C-4CE3-81AF-A000DC98FCE2}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuction", "Czf.App.WebAuction\WebAuction\WebAuction.csproj", "{810DC096-98DE-4248-A8E4-E305455CEA81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Sources", "Czf.Sources", "{EAB36126-EB1F-4327-83E1-A4D394A7402B}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New Folder", "New Folder", "{6262581C-88A8-4838-A0AE-69FD7DC16E27}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionSource", "StubAuctionSource\AuctionSource.csproj", "{23F7C225-9978-4EC1-9BE3-2DCF30862629}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Domain", "Czf.Domain", "{37431516-E372-40BF-8A79-D582620711CD}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain.csproj", "{791687F9-3097-41E6-9C34-73B62481CC5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Util", "Czf.Util", "{EF12C52B-6C39-443C-AE25-23076C84AAF0}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Czf.Util.Common", "Czf.Util.Common\Czf.Util.Common.csproj", "{22F228A1-956C-44E1-AB81-9262E6B9CB0B}"
 EndProject
@@ -35,127 +25,87 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Czf.Util.VersionControl", "Czf.Util.VersionControl\Czf.Util.VersionControl.csproj", "{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.SQL", "Czf.SQL", "{6A1F2EA9-3DA1-44C6-A73C-4C6278FEC40C}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Mvc", "Czf.Mvc", "{D596575A-E868-453E-AC23-DCA07B95725C}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Build", "Czf.Build", "{859A96E8-136C-4EA9-8C3D-C310655995B9}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuctionDeploy", "WebAuctionDeploy\WebAuctionDeploy.csproj", "027BCF64-0E02-44D7-9D51-34E4EF4248CD"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuctionDeploy", "WebAuctionDeploy\WebAuctionDeploy.csproj", "{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		WebAuction(local)|Any CPU = WebAuction(local)|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
-		WebAuction(local)|x86 = WebAuction(local)|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.Build.0 = Debug|x86
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.Build.0 = Release|x86
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.ActiveCfg = Release|x86
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|x86.Build.0 = Debug|x86
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|x86.Build.0 = Release|x86
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|x86.ActiveCfg = Release|x86
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|x86.Build.0 = Debug|x86
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|x86.Build.0 = Release|x86
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|x86.ActiveCfg = Release|x86
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|x86.Build.0 = Debug|x86
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|x86.Build.0 = Release|x86
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|x86.ActiveCfg = Release|x86
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|x86.Build.0 = Debug|x86
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|x86.Build.0 = Release|x86
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|x86.ActiveCfg = Release|x86
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|x86.Build.0 = Debug|x86
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|x86.Build.0 = Release|x86
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|x86.ActiveCfg = Release|x86
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Debug|x86.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Debug|x86.ActiveCfg = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Debug|Any CPU.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Debug|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Release|x86.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Release|x86.ActiveCfg = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Release|Any CPU.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.Release|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.Build.0 = Debug|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.Build.0 = Release|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.ActiveCfg = Release|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.WebAuction(local)|Any CPU.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.WebAuction(local)|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.WebAuction(local)|Any CPU.Build.0 = Debug|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.WebAuction(local)|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.ActiveCfg = Release|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Release|x86.Build.0 = Release|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|Any CPU.Build.0 = WebAuction(local)|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.ActiveCfg = WebAuction(local)|Any CPU
+		{810DC096-98DE-4248-A8E4-E305455CEA81}.Debug|x86.Build.0 = WebAuction(local)|Any CPU
 		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|x86.ActiveCfg = Release|x86
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Release|x86.Build.0 = Release|x86
 		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.WebAuction(local)|Any CPU.Build.0 = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.WebAuction(local)|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.WebAuction(local)|x86.Build.0 = WebAuction(local)|Any CPU
-		{810DC096-98DE-4248-A8E4-E305455CEA81}.WebAuction(local)|x86.ActiveCfg = WebAuction(local)|Any CPU
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23F7C225-9978-4EC1-9BE3-2DCF30862629}.Debug|x86.Build.0 = Debug|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.ActiveCfg = Release|x86
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Release|x86.Build.0 = Release|x86
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{791687F9-3097-41E6-9C34-73B62481CC5D}.Debug|x86.Build.0 = Debug|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|x86.ActiveCfg = Release|x86
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Release|x86.Build.0 = Release|x86
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22F228A1-956C-44E1-AB81-9262E6B9CB0B}.Debug|x86.Build.0 = Debug|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|x86.ActiveCfg = Release|x86
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Release|x86.Build.0 = Release|x86
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EEE41376-7E15-4F76-8221-6B908F58FC8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|x86.ActiveCfg = Release|x86
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Release|x86.Build.0 = Release|x86
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|x86.ActiveCfg = Release|x86
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Release|x86.Build.0 = Release|x86
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}.Debug|x86.Build.0 = Debug|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Release|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Release|Any CPU.Build.0 = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Release|x86.ActiveCfg = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Release|x86.Build.0 = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Debug|Any CPU.ActiveCfg = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Debug|Any CPU.Build.0 = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Debug|x86.ActiveCfg = WebAuction(local)|Any CPU
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}.Debug|x86.Build.0 = WebAuction(local)|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{810DC096-98DE-4248-A8E4-E305455CEA81} = {8607B1FA-1B7C-4CE3-81AF-A000DC98FCE2}
@@ -166,6 +116,6 @@ Global
 		{EEE41376-7E15-4F76-8221-6B908F58FC8A} = {EF12C52B-6C39-443C-AE25-23076C84AAF0}
 		{BBA6B8A1-7AEA-4D66-A4DE-8BE875B362C8} = {EF12C52B-6C39-443C-AE25-23076C84AAF0}
 		{D803FF2D-7AEB-4CDC-9717-C0100F83A45C} = {D596575A-E868-453E-AC23-DCA07B95725C}
-		027BCF64-0E02-44D7-9D51-34E4EF4248CD = {859A96E8-136C-4EA9-8C3D-C310655995B9}
+		{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D} = {859A96E8-136C-4EA9-8C3D-C310655995B9}
 	EndGlobalSection
 EndGlobal

@@ -62,10 +62,14 @@ namespace Czf.Domain.BaseClasses
 		#endregion
 		
 		#region constructors
+		/// <summary>
+		/// Create an instance ofBaseAuctionItem.  This is abstract class cannot be called directly
+		/// </summary>
 		public BaseAuctionItem()
 		{
 			Title = string.Empty;
 			Description = string.Empty;
+			Status = AuctionItemStatus.Inactive;
 		}
 		#endregion
 		

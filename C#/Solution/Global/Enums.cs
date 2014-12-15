@@ -26,4 +26,28 @@ namespace Czf.Domain.Global
 		WebAuction
 	}
 	
+	/// <summary>
+	/// Various status that auction items may be in.
+	/// </summary>
+	[Flags]
+	public enum AuctionItemStatus
+	{
+		/// <summary>
+		/// All items have this status
+		/// </summary>
+		Default = 1 << 0,
+		/// <summary>
+		/// Represents an item that is available for purchase/biddings.
+		/// </summary>
+		Active = 1 << 1,
+		/// <summary>
+		/// Represents an item that is not available for purchase/biddings.
+		/// </summary>
+		Inactive = 1 << 2,
+		/// <summary>
+		/// Represents an item that has been completed in purchases/biddings
+		/// </summary>
+		Closed = 1 << 3
+		
+	}
 }

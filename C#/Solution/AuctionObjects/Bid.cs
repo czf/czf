@@ -68,5 +68,16 @@ namespace Czf.Domain.AuctionObjects
 			DateMade = DateTime.Now;
 		}
 		#endregion
+		
+		#region Methods
+		/// <summary>
+		/// Saves this instance to the auction source.
+		/// </summary>
+		/// <returns>True if successfully saved.</returns>
+		public bool Save()
+		{
+			return AuctionSource.Save<Bid>(this);
+		}
+		#endregion
 	}
 }

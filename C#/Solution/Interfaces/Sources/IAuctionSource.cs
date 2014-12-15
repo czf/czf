@@ -15,17 +15,25 @@ namespace Czf.Domain.Interfaces.Sources
 	/// </summary>
 	public interface IAuctionSource
 	{
+		/// <summary>
+		/// Get a object of type T by integer identifier
+		/// </summary>
+		/// <param name="id">identifier</param>
+		/// <returns></returns>
 		T Get<T>(int id)
 			where T : class;
 		
 		T GetByAlternateKey<T>(string KeyName, object KeyObject)
 			where T : class;
 		
+		List<T> GetAll<T>()
+			where T : class;
+		
 		List<ChildT> GetRelatedById<ChildT,ParentT>(int id)
 			where ChildT : class
 			where ParentT : class;
 		
-		List<ChildT> GetRelatedByAlternateLookupId<ChildT,ParentT>(int id)
+		List<ChildT> GetRelatedByAlternateLookupId<ChildT,ParentT>(string lookupName, int id)
 			where ChildT : class
 			where ParentT : class;
 		

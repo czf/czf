@@ -19,7 +19,7 @@ namespace Czf.Sources.StubAuctionSource
 	/// <summary>
 	/// A temporary data source for auction data.
 	/// </summary>
-	/// <remarks>avoiding database stuff so I can work on controller/view stuff</remarks>
+	/// <remarks>avoiding database stuff so I can work on domain/controller/view stuff</remarks>
 	public class StubAuctionSource : IAuctionSource
 	{
 		#region Private
@@ -79,6 +79,11 @@ namespace Czf.Sources.StubAuctionSource
 			return result;
 		}
 		
+		public List<T> GetAll<T>() where T : class
+		{
+			throw new NotImplementedException();
+		}
+		
 		public T GetByAlternateKey<T>(string KeyName, object KeyObject) where T : class
 		{
 			throw new NotImplementedException();
@@ -86,6 +91,13 @@ namespace Czf.Sources.StubAuctionSource
 		}
 		
 		public List<ChildT> GetRelatedById<ChildT, ParentT>(int id) where ChildT : class where ParentT : class
+		{
+			throw new NotImplementedException();
+		}
+		
+		public List<ChildT> GetRelatedByAlternateLookupId<ChildT,ParentT>(string lookupName, int id)
+			where ChildT : class
+			where ParentT : class
 		{
 			throw new NotImplementedException();
 		}

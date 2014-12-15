@@ -11,13 +11,13 @@ using System.Collections.Generic;
 using Czf.Domain.BaseClasses;
 using Czf.Domain.Interfaces.Consumers;
 using Czf.Domain.Interfaces.Sources;
-
+using Czf.Domain.Global;
 namespace Czf.Domain.BaseClasses
 {
 	/// <summary>
 	/// Description of AuctionItem.
 	/// </summary>
-	public class BaseAuctionItem : IdentifiedByInt, IAuctionSourceConsumer
+	public abstract class BaseAuctionItem : IdentifiedByInt, IAuctionSourceConsumer
 	{
 		
 		
@@ -52,17 +52,61 @@ namespace Czf.Domain.BaseClasses
 		/// <value>
 		/// The true value.
 		/// </value>
-		public double Value {get; set;}
+		public decimal Value {get; set;}
 		
+		/// <summary>
+		/// Gets or sets the Item status
+		/// </summary>
+		/// <returns></returns>
+		public AuctionItemStatus Status {get; set;}
 		#endregion
 		
 		#region constructors
 		public BaseAuctionItem()
 		{
+			Title = string.Empty;
+			Description = string.Empty;
 		}
 		#endregion
 		
-		#region methods
+		#region Methods
+		/// <summary>
+		/// Updates this Item to active
+		/// </summary>
+		/// <returns></returns>
+		public bool Activate()
+		{
+			return ChangeStatus(AuctionItemStatus.Active);
+		}
+		
+		/// <summary>
+		/// Closes this Item from actions
+		/// </summary>
+		/// <returns></returns>
+		public bool Close()
+		{
+			return ChangeStatus(AuctionItemStatus.Closed);
+		}
+		
+		/// <summary>
+		/// Saves the instance to the AuctionSource. 
+		/// </summary>
+		public abstract bool Save();
+		private bool ChangeStatus(AuctionItemStatus status)
+		{
+			if(status == Status)
+			{
+				return true;
+			}
+			AuctionItemStatus oldStatus = Status;
+			Status = status;
+			bool result = this.Save();
+			if(!result)
+			{
+				Status = oldStatus;
+			}
+			return result;
+		}
 		#endregion
 		
 		

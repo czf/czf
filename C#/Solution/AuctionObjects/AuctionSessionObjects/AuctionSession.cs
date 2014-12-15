@@ -18,12 +18,21 @@ namespace Czf.Domain.AuctionObjects.AuctionSessionObjects
 	public class AuctionSession : IAuctionSourceConsumer
 	{
 		#region Properties
+		/// <summary>
+		/// Instance of the AuctionSource
+		/// </summary>
 		public IAuctionSource AuctionSource {get; set;} 
 		
+		/// <summary>
+		/// User of the current session
+		/// </summary>
 		public User User {get; set;} 
 		
 		#endregion
 		#region Constructors
+		/// <summary>
+		/// Create an instance of AuctionSession
+		/// </summary>
 		public AuctionSession()
 		{
 		

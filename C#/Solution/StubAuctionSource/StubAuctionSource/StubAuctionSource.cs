@@ -14,7 +14,7 @@ using Czf.Domain.GenericObjects;
 using Czf.Domain.Interfaces.Sources;
 using System.Collections.Generic;
 
-namespace Czf.Sources.StubAuctionSource
+namespace Czf.Sources.AuctionSource
 {
 	/// <summary>
 	/// A temporary data source for auction data.
@@ -23,48 +23,26 @@ namespace Czf.Sources.StubAuctionSource
 	public class StubAuctionSource : IAuctionSource
 	{
 		#region Private
+		private List<object> _helpers;
 		#region something
-		private Dictionary<Type,Dictionary<int,object>> _domainDictionay {get; set;} 
+		internal Dictionary<Type,Dictionary<int,object>> _domainDictionay {get; set;} 
 		#endregion
 		#endregion
 		
 		public StubAuctionSource()
 		{
 			_domainDictionay = new Dictionary<Type, Dictionary<int, object>>();
-			_domainDictionay.Add(typeof(Bid),new Dictionary<int,object>());
-			_domainDictionay.Add(typeof(BidItem),new Dictionary<int,object>());
-			_domainDictionay.Add(typeof(User),new Dictionary<int,object>());
+			_helpers = new List<object>()
+			{
+				new BidStubHelper(this),
+				new BidItemStubHelper(this),
+				new UserStubHelper(this)
+			};
 			
-			_domainDictionay[typeof(BidItem)].Add(1,
-			                                      	new BidItem{
-			                                      	Id = 1,
-			                                      	AuctionSource = this,	
-			                                      	Description = "A widget that widgets.",
-			                                      	Title = "widget 1",
-			                                      	Value = 100			                                      			       
-			                                      });
-			_domainDictionay[typeof(BidItem)].Add(2,
-			                                      	new BidItem{
-			                                      	Id = 2,
-			                                      	AuctionSource = this,	
-			                                      	Description = "A do something that somethings.",
-			                                      	Title = "do something 1",
-			                                      	Value = 101
-			                                      });
-			_domainDictionay[typeof(User)].Add(1,
-			                                   new User{
-			                                   	Id = 1,
-			                                   	AuctionSource = this,
-			                                   	Name = new Name("test", "user"),
-			                                   	UserName = "123"
-			                                   });
-			_domainDictionay[typeof(User)].Add(1,
-			                                   new User{
-			                                   	Id = 2,
-			                                   	AuctionSource = this,
-			                                   	Name = new Name("example", "tester"),
-			                                   	UserName = "321"
-			                                   });
+			
+			
+			
+			
 		}
 		
 		public T Get<T>(int id) where T : class

@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 # SharpDevelop 5.0
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.App", "Czf.App", "{8607B1FA-1B7C-4CE3-81AF-A000DC98FCE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuction", "Czf.App.WebAuction\WebAuction\WebAuction.csproj", "{810DC096-98DE-4248-A8E4-E305455CEA81}"

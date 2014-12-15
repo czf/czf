@@ -8,6 +8,10 @@ namespace Czf.App.WebAuction.Controllers
 	/// </summary>
 	public class SettingsController : Controller
 	{
+		/// <summary>
+		/// Setup initial Settings interface
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult Index()
 		{
 			return View();

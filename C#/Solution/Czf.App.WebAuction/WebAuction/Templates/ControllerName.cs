@@ -2,7 +2,7 @@
 
 namespace Czf.App.WebAuction
 {
-	///<summary> Static class for controller names
+	///<summary> Static class for controller names</summary>
 	public static class ControllerName 
 	{
  		/// <summary>String constant for the Home controller.</summary>

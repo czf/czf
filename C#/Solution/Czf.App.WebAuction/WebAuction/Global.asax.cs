@@ -13,8 +13,15 @@ using Czf.Domain.Global;
 using System.IO;
 namespace Czf.App.WebAuction
 {
+	/// <summary>
+	/// WebAuction Application methods
+	/// </summary>
 	public class CzfWebAuction : HttpApplication
 	{
+		/// <summary>
+		/// Register routing for WebAuction
+		/// </summary>
+		/// <param name="routes"></param>
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.Ignore("{resource}.axd/{*pathInfo}");

@@ -9,7 +9,7 @@ using System;
 
 namespace Czf.App.WebAuction
 {
-	///<summary> Static class for controller names
+	///<summary> Static class for controller names</summary>
 	public static class ControllerName 
 	{
 <#

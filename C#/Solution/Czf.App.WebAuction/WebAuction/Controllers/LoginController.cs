@@ -14,7 +14,10 @@ namespace Czf.App.WebAuction.Controllers
 	public class LoginController : BaseAuctionController
 	{
 
-		
+		/// <summary>
+		/// Setup the inital login page
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult Index()
 		{			
 			LoginActionViewModel model = new LoginActionViewModel();

@@ -23,6 +23,9 @@ namespace Czf.App.WebAuction.Models
 		#endregion
 		
 		#region Constructors
+		/// <summary>
+		/// Create an instance of LoginActionViewModel
+		/// </summary>
 		public LoginActionViewModel()
 		{
 			Input = new LoginActionInputModel();

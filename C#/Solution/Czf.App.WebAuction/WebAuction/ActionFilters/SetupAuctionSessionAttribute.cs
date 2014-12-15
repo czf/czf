@@ -19,6 +19,10 @@ namespace Czf.App.WebAuction.ActionFilters
 		private static readonly string _auctionCookieUserIdKey = "u";
 		private HttpCookie _auctionCookie {get; set;}
 		#endregion
+		/// <summary>
+		/// before the action is executed setup the Session data available.
+		/// </summary>
+		/// <param name="filterContext"></param>
 		public override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
 			IHasAuctionSession controller = filterContext.Controller as IHasAuctionSession;

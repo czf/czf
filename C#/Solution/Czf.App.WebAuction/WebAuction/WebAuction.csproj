@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Czf.App.WebAuction</RootNamespace>
     <AssemblyName>Czf.App.WebAuction</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AppDesignerFolder>Properties</AppDesignerFolder>

@@ -10,17 +10,21 @@ using System;
 using System.Web.Mvc;
 namespace Czf.App.WebAuction.Controllers
 {
+	/// <summary>
+	/// Controller for initial page
+	/// </summary>
 	public class HomeController : Controller
 	{
+		/// <summary>
+		/// Setup intial page.
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult Index()
 		{
 			return View();
 		}
 		
-		public ActionResult Contact()
-		{
-			return View();
-		}
+		
 		
 	}
 }

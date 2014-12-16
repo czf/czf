@@ -19,6 +19,7 @@ namespace Czf.Domain.AuctionObjects
 	public class User : IdentifiedByInt
 	{
 		#region Privates
+		[NonSerialized]
 		private List<Bid> _userBids = null;
 		#endregion
 
@@ -27,7 +28,9 @@ namespace Czf.Domain.AuctionObjects
 		#endregion
 		#region Properties
 		public IAuctionSource AuctionSource {get; set;} 
-		
+		/// <summary>
+		/// User's first and last name
+		/// </summary>
 		public Name Name {get; set;} 
 		
 		/// <summary>

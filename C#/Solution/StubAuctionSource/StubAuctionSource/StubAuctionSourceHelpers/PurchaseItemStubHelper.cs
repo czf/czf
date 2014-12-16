@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Czf.Domain.AuctionObjects;
 namespace Czf.Sources.AuctionSource
 {
@@ -39,6 +40,13 @@ namespace Czf.Sources.AuctionSource
 			                                                     Title = "Poker night",
 			                                                     QuantityAvailable = 5,
 			                                                         });
+			AuctionSource._relatedGetters.Add(
+				new Tuple<Type,Type>(typeof(User),typeof(PurchaseItem)), 
+				(int purchaseItemId) =>  AuctionSource.GetAll<Bid>()
+													.Where(bid => bid.ItemIdForBid == purchaseItemId)
+													.Select(bid => bid.BidUser) 
+													.ToList<object>()
+			);
 			                                                         
 		}
 		#endregion

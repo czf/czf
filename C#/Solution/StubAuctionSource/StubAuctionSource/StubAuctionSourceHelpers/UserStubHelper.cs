@@ -47,6 +47,10 @@ namespace Czf.Sources.AuctionSource
 			                                   	Name = new Name("example", "tester"),
 			                                   	UserName = "321"
 			                                   });
+			AuctionSource._relatedGetters.Add(
+				new Tuple<Type,Type>(typeof(Bid),typeof(User)), 
+				(int userId) =>  AuctionSource.GetAll<Bid>().Where(bid=>bid.UserId == userId).ToList<object>()
+			);
 		}
 		#endregion
 		#region Methods

@@ -33,12 +33,36 @@ namespace Czf.Domain.AuctionObjects
 		/// </summary>
 		public IAuctionSource AuctionSource {get; set;} 
 		
+		/// <summary>
+		/// Id of the User that submitted the bid
+		/// </summary>
 		public int UserId {get; set;} 
 		
 		/// <summary>
 		/// Get or set if the Bid has been cancelled
 		/// </summary>
 		public bool Canceled {get; set;} 
+		
+		/// <summary>
+		/// The item Id this bid is for
+		/// </summary>
+		public int ItemIdForBid {get; set;}
+		
+		/// <summary>
+		/// Gets the appropriate AuctionItem using ItemIdForBid.
+		/// <returns>An Item decending from BaseAuctionItem</returns>
+		/// </summary>
+		public BaseAuctionItem Item 
+		{
+			get
+			{
+				if( AuctionSource.Get<BidItem>(ItemIdForBid) == null)
+				{
+					return AuctionSource.Get<PurchaseItem>(ItemIdForBid);
+				}
+				return AuctionSource.Get<BidItem>(ItemIdForBid) ;
+			}
+		}
 		
 		/// <summary>
 		/// Get or set the user owning the bid
@@ -62,6 +86,9 @@ namespace Czf.Domain.AuctionObjects
 		#endregion
 		
 		#region Constructors
+		/// <summary>
+		/// Create an instance of bid
+		/// </summary>
 		public Bid()
 		{
 			Amount = 0;

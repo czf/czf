@@ -27,7 +27,7 @@ namespace Czf.Sources.AuctionSource
 		private List<object> _helpers;
 		#region something
 		internal Dictionary<Type,Dictionary<int,object>> _domainDictionay;
-		internal Dictionary<Tuple<Type, Type>, Func<List<object>>> _relatedGetters;
+		internal Dictionary<Tuple<Type, Type>, Func<int, List<object>>> _relatedGetters;
 		
 		#endregion
 		#endregion
@@ -37,7 +37,7 @@ namespace Czf.Sources.AuctionSource
 		public StubAuctionSource()
 		{
 			_domainDictionay = new Dictionary<Type, Dictionary<int, object>>();
-			_relatedGetters = new Dictionary<Tuple<Type, Type>, Func<List<object>>>();
+			_relatedGetters = new Dictionary<Tuple<Type, Type>, Func< int, List<object>>>();
 			_helpers = new List<object>()
 			{
 				new BidStubHelper(this),
@@ -97,6 +97,12 @@ namespace Czf.Sources.AuctionSource
 		/// <returns></returns>
 		public List<ChildT> GetRelatedById<ChildT, ParentT>(int id) where ChildT : class where ParentT : class
 		{
+			Tuple<Type,Type> relatedKey = new Tuple<Type,Type>(typeof(ChildT), typeof(ParentT));
+			
+			if(_domainDictionay.ContainsKey(typeof(ChildT)) && _relatedGetters.ContainsKey(relatedKey))
+			{
+				return _relatedGetters[relatedKey](id).Select(x=> (ChildT)x).ToList();
+			}
 			throw new NotImplementedException();
 		}
 		/// <summary>

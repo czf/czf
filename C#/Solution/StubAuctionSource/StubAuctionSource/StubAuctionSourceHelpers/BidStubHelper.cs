@@ -27,6 +27,12 @@ namespace Czf.Sources.AuctionSource
 		{
 			AuctionSource = source;
 			AuctionSource._domainDictionay.Add(typeof(Bid),new Dictionary<int,object>());
+			AuctionSource._relatedGetters.Add(
+				new Tuple<Type,Type>(typeof(Bid),typeof(BidItem)), 
+				(int bidItemId) =>  AuctionSource.GetAll<Bid>()
+													.Where(bid => bid.ItemIdForBid == bidItemId)
+													.ToList<object>()
+			);
 		}
 		#endregion
 	}

@@ -28,7 +28,7 @@ namespace Czf.Sources.AuctionSource
 		#region something
 		internal Dictionary<Type,Dictionary<int,object>> _domainDictionay;
 		internal Dictionary<Tuple<Type, Type>, Func<int, List<object>>> _relatedGetters;
-		
+		internal Dictionary<Tuple<Type,string>, Func<object,object>> _alternateKeyGetters;
 		#endregion
 		#endregion
 		/// <summary>
@@ -38,6 +38,7 @@ namespace Czf.Sources.AuctionSource
 		{
 			_domainDictionay = new Dictionary<Type, Dictionary<int, object>>();
 			_relatedGetters = new Dictionary<Tuple<Type, Type>, Func< int, List<object>>>();
+			_alternateKeyGetters = new Dictionary<Tuple<Type,string>, Func<object, object>>();
 			_helpers = new List<object>()
 			{
 				new BidStubHelper(this),

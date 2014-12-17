@@ -51,6 +51,14 @@ namespace Czf.Sources.AuctionSource
 				new Tuple<Type,Type>(typeof(Bid),typeof(User)), 
 				(int userId) =>  AuctionSource.GetAll<Bid>().Where(bid=>bid.UserId == userId).ToList<object>()
 			);
+			AuctionSource._alternateKeyGetters.Add(
+				new Tuple<Type, string>(typeof(User),User.ALTKEY_BidNumber),
+				(object keyObject) => 
+				{
+					string keyValue = keyObject as string;
+					return AuctionSource.GetAll<User>().Where(user => user.UserName == keyValue).ToList();
+				});
+				
 		}
 		#endregion
 		#region Methods

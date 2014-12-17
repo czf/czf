@@ -29,6 +29,8 @@ namespace Czf.Sources.AuctionSource
 		internal Dictionary<Type,Dictionary<int,object>> _domainDictionay;
 		internal Dictionary<Tuple<Type, Type>, Func<int, List<object>>> _relatedGetters;
 		internal Dictionary<Tuple<Type,string>, Func<object,object>> _alternateKeyGetters;
+		internal Dictionary<Type, Func<object, bool>> _savers;
+		internal Dictionary<Type, Func<object, bool>> _deleters;
 		#endregion
 		#endregion
 		/// <summary>
@@ -39,6 +41,8 @@ namespace Czf.Sources.AuctionSource
 			_domainDictionay = new Dictionary<Type, Dictionary<int, object>>();
 			_relatedGetters = new Dictionary<Tuple<Type, Type>, Func< int, List<object>>>();
 			_alternateKeyGetters = new Dictionary<Tuple<Type,string>, Func<object, object>>();
+			_savers = new Dictionary<Type, Func<object, bool>>();
+			_deleters = new Dictionary<Type, Func<object, bool>>();
 			_helpers = new List<object>()
 			{
 				new BidStubHelper(this),
@@ -58,7 +62,8 @@ namespace Czf.Sources.AuctionSource
 			if (_domainDictionay.ContainsKey(typeof(T))) {
 				if(_domainDictionay[typeof(T)].ContainsKey(id))
 				{
-					result = (T)_domainDictionay[typeof(T)][id];
+					result = (T)_domainDictionay[typeof(T)][id]; // passing a reference so modifiations are made directly 
+																 // might need copy constructors for actual tests later
 				}
 			}
 			else
@@ -88,8 +93,14 @@ namespace Czf.Sources.AuctionSource
 		/// <returns></returns>
 		public T GetByAlternateKey<T>(string KeyName, object KeyObject) where T : class
 		{
-			throw new NotImplementedException();
-			//TODO Implement a getter for each Tuple<T,string>(typeof(T), KeyName) that casts keyobject to the key value and compares to a property on T
+			Tuple<Type,string> key = new Tuple<Type, string>(typeof(T),KeyName);
+			T result = null;
+			if(_alternateKeyGetters.ContainsKey(key))
+			{
+				result = (T)_alternateKeyGetters[key](KeyObject);
+			}
+			
+			return null;
 		}
 		/// <summary>
 		/// Get objects of type ChildT related to object of type ParentT with int identifier id
@@ -127,11 +138,18 @@ namespace Czf.Sources.AuctionSource
 		/// <summary>
 		/// Save the target object of type T
 		/// </summary>
-		/// <param name="target"></param>
+		/// <param name="targetObj"></param>
 		/// <returns></returns>
-		public bool Save<T>(T target) where T : class
+		public bool Save<T>(T targetObj) where T :  IdentifiedByInt
 		{
-			throw new NotImplementedException();
+			IdentifiedByInt target = targetObj as IdentifiedByInt;
+			Dictionary<int, object> all = _domainDictionay[typeof(T)];
+			if(!target.Id.HasValue)
+			{
+				target.Id = all.Keys.Max();
+			}
+			all[target.Id.Value] = target;
+			return true;
 		}
 		
 		/// <summary>

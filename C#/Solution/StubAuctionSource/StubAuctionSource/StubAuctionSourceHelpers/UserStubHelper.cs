@@ -11,6 +11,7 @@ using Czf.Domain.AuctionObjects;
 using System.Linq;
 using System.Collections.Generic;
 using Czf.Domain.GenericObjects;
+using Czf.Domain.BaseClasses;
 namespace Czf.Sources.AuctionSource
 {
 	/// <summary>
@@ -57,8 +58,8 @@ namespace Czf.Sources.AuctionSource
 				{
 					string keyValue = keyObject as string;
 					return AuctionSource.GetAll<User>().Where(user => user.UserName == keyValue).ToList();
-				});
-				
+				}
+			);
 		}
 		#endregion
 		#region Methods

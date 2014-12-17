@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using Czf.Domain.BaseClasses;
 namespace Czf.Domain.Interfaces.Sources
 {
 	/// <summary>
@@ -64,7 +65,7 @@ namespace Czf.Domain.Interfaces.Sources
 		/// <param name="target"></param>
 		/// <returns></returns>
 		bool Save<T>(T target)
-			where T : class;
+			where T : IdentifiedByInt;
 		
 		/// <summary>
 		/// Create an object of type T

@@ -110,6 +110,14 @@
       <DependentUpon>ControllerName.tt</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Templates\ViewName.cs">
+      <DependentUpon>ViewName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Templates\ViewName.txt">
+      <DependentUpon>ViewName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\WebAuction%28local%29\appSettings.config" />
@@ -133,6 +141,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ControllerName.cs</LastGenOutput>
       <CustomToolNamespace>Czf.App.WebAuction</CustomToolNamespace>
+    </None>
+    <None Include="Templates\ViewName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ViewName.cs</LastGenOutput>
     </None>
     <None Include="Views\Login\Index.cshtml" />
     <None Include="Views\web.config" />

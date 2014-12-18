@@ -1,0 +1,49 @@
+﻿<#@ template hostspecific="true"language="C#" debug="true" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System" #>
+using System;
+
+namespace Czf.App.WebAuction
+{
+	///<summary> Static class for view names</summary>
+	public static class ViewName 
+	{
+<#
+bool a = true;
+ // Find a path within the same project as the text template:
+ Directory.SetCurrentDirectory(Path.GetDirectoryName(Path.GetDirectoryName(Host.TemplateFile)) + "..\\Views");
+ IEnumerable<string> directories = Directory.EnumerateDirectories("."); 
+ 
+ //IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
+ foreach(string directory in directories.OrderBy(x=>x))
+ {
+ 	Directory.SetCurrentDirectory(directory);#>
+ 		public static class <#=Path.GetFileNameWithoutExtension(directory)#>
+ 		{
+ 			public static class Partials
+ 			{	<# 
+ 				IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
+				foreach(string filename in fileNames.Where(x=>x.StartsWith(".\\_")).OrderBy(x=>x)){#>			
+				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename).Replace("View", string.Empty) #> partial.</summary>
+				public static readonly string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
+				
+			}
+			public static class FullView
+			{	<#
+				foreach(string filename in fileNames.Where(x=> !x.StartsWith(".\\_")).OrderBy(x=>x)){#>			
+				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename).Replace("View", string.Empty) #> View.</summary>
+				public static readonly string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
+			
+			}
+		}
+<#
+ Directory.SetCurrentDirectory("..");
+ }
+ #>
+ 
+	}
+}

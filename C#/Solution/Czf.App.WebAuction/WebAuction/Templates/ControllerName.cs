@@ -6,10 +6,10 @@ namespace Czf.App.WebAuction
 	public static class ControllerName 
 	{
  		/// <summary>String constant for the Home controller.</summary>
-		public static string Home = "Home";
+		public static readonly string Home = "Home";
   		/// <summary>String constant for the Login controller.</summary>
-		public static string Login = "Login";
+		public static readonly string Login = "Login";
   		/// <summary>String constant for the Settings controller.</summary>
-		public static string Settings = "Settings";
+		public static readonly string Settings = "Settings";
  	}
 }

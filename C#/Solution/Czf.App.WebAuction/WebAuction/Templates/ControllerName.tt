@@ -19,7 +19,7 @@ namespace Czf.App.WebAuction
  foreach(string filename in fileNames){
  #>
  		/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty) #> controller.</summary>
-		public static string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#>";
+		public static readonly string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#>";
  <#}#>
 	}
 }

@@ -11,38 +11,70 @@ namespace Czf.App.WebAuction
 {
 	///<summary> Static class for view names</summary>
 	public static class ViewName 
-	{
-<#
-bool a = true;
+	{<#
+bool bubbled = false;
  // Find a path within the same project as the text template:
  Directory.SetCurrentDirectory(Path.GetDirectoryName(Path.GetDirectoryName(Host.TemplateFile)) + "..\\Views");
- IEnumerable<string> directories = Directory.EnumerateDirectories("."); 
+ IEnumerable<string> directories ; 
  
  //IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
- foreach(string directory in directories.OrderBy(x=>x))
+List<Stack<string>> subDirectories = new List<Stack<string>>(); 
+subDirectories.Add(new Stack<string>(Directory.EnumerateDirectories(".").OrderBy(x=>x)));
+int depth = 0;
+int previousDepth = -1;
+string directory = string.Empty;
+ while( depth > -1 &&  subDirectories[depth].Count >0)
  {
+ if(previousDepth < depth)
+ {
+ 		directory = subDirectories[depth].Peek();
  	Directory.SetCurrentDirectory(directory);#>
- 		public static class <#=Path.GetFileNameWithoutExtension(directory)#>
- 		{
- 			public static class Partials
- 			{	<# 
- 				IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
-				foreach(string filename in fileNames.Where(x=>x.StartsWith(".\\_")).OrderBy(x=>x)){#>			
-				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename).Replace("View", string.Empty) #> partial.</summary>
-				public static readonly string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
+
+<#=new string('\t',depth)#>		/// <summary>Directory</summary>
+<#=new string('\t',depth)#>		public static class <#=Path.GetFileNameWithoutExtension(directory)#>
+<#=new string('\t',depth)#>		{<#}
+ 	
+ 	directories = Directory.EnumerateDirectories(".").OrderBy(x=>x);
+ 	if(directories.Any() && previousDepth < depth)
+ 	{
+ 		//bubbled = false;
+ 		previousDepth = depth;
+ 		depth ++;
+ 		subDirectories.Add(new Stack<string>(directories));
+ 		continue;
+ 	}
+ 		IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
+ 		if(fileNames.Any(x=>x.StartsWith(".\\_")))
+ {#> 
+<#=new string('\t',depth)#> 			///<summary>Partial Views for this directory</summary>
+<#=new string('\t',depth)#> 			public static class PartialView
+<#=new string('\t',depth)#> 			{<# 
+ 				
+				foreach(string filename in fileNames.Where(x=>x.StartsWith(".\\_")).OrderBy(x=>x)){#>
 				
-			}
-			public static class FullView
-			{	<#
-				foreach(string filename in fileNames.Where(x=> !x.StartsWith(".\\_")).OrderBy(x=>x)){#>			
-				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename).Replace("View", string.Empty) #> View.</summary>
-				public static readonly string <#= Path.GetFileNameWithoutExtension(filename).Replace("Controller", string.Empty)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
-			
-			}
-		}
+<#=new string('\t',depth)#>				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename) #> partial.</summary>
+<#=new string('\t',depth)#>				public static readonly string <#= Path.GetFileNameWithoutExtension(filename)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
+				
+<#=new string('\t',depth)#>			}<#}#>
+<#			if(fileNames.Any(x=>!x.StartsWith(".\\_"))){#>
+<#=new string('\t',depth)#>			/// <summary>Full Views for this directory</summary>
+<#=new string('\t',depth)#>			public static class FullView
+<#=new string('\t',depth)#>			{<#
+				foreach(string filename in fileNames.Where(x=> !x.StartsWith(".\\_")).OrderBy(x=>x)){#>
+				
+<#=new string('\t',depth)#>				/// <summary>String constant for the <#= Path.GetFileNameWithoutExtension(filename) #> View.</summary>
+<#=new string('\t',depth)#>				public static readonly string <#= Path.GetFileNameWithoutExtension(filename)#> = "<#=Path.GetFileNameWithoutExtension(filename)#>";<#}#>
+
+<#=new string('\t',depth)#>			}<#}#>
+
+<#=new string('\t',depth)#>		}
 <#
- Directory.SetCurrentDirectory("..");
+ Directory.SetCurrentDirectory(".."); 
+ subDirectories.RemoveAt(depth);
+ previousDepth = depth;
+ depth--;
  }
+ 
  #>
  
 	}

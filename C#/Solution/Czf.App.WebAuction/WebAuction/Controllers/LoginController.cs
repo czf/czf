@@ -9,7 +9,6 @@ using Czf.App.WebAuction.Models.InputViewModel;
 using Czf.Mvc.Common.ActionFilters;
 using Czf.Mvc.Common.Controllers;
 
-using System.IO;
 namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
@@ -24,8 +23,6 @@ namespace Czf.App.WebAuction.Controllers
 		/// <returns></returns>
 		public ActionResult Index()
 		{			
-			IEnumerable<string> directories = Directory.EnumerateDirectories(".");
-			
 			LoginActionViewModel model = new LoginActionViewModel();
 			return View("Login",model);
 		}

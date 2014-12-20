@@ -18,8 +18,8 @@ bool bubbled = false;
  IEnumerable<string> directories ; 
  
  //IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
-List<Stack<string>> subDirectories = new List<Stack<string>>(); 
-subDirectories.Add(new Stack<string>(Directory.EnumerateDirectories(".").OrderBy(x=>x)));
+List<Queue<string>> subDirectories = new List<Queue<string>>(); 
+subDirectories.Add(new Queue<string>(Directory.EnumerateDirectories(".").OrderBy(x=>x)));
 int depth = 0;
 int previousDepth = -1;
 string directory = string.Empty;
@@ -40,7 +40,7 @@ string directory = string.Empty;
  		//bubbled = false;
  		previousDepth = depth;
  		depth ++;
- 		subDirectories.Add(new Stack<string>(directories));
+ 		subDirectories.Add(new Queue<string>(directories));
  		continue;
  	}
  		IEnumerable<string> fileNames = Directory.EnumerateFiles(".").Where(x => x.EndsWith(".cshtml"));
@@ -70,28 +70,15 @@ string directory = string.Empty;
 
 <#=new string('\t',depth)#>		}
 <#
- Directory.SetCurrentDirectory(".."); 
-subDirectories[depth].Pop();
-if(subDirectories[depth].Count == 0)
-{
-subDirectories.RemoveAt(depth);
-previousDepth = depth;
- depth--;
- //Directory.SetCurrentDirectory(".."); 
-}
-
-//directory = subDirectories[depth].Pop();
-else //if(subDirectories[depth].Count > 0)
-{
-directory = subDirectories[depth].Peek();
- Directory.SetCurrentDirectory(directory);#>
- 
-<#=new string('\t',depth)#>		/// <summary>Directory</summary>
-<#=new string('\t',depth)#>		public static class <#=Path.GetFileNameWithoutExtension(directory)#>
-<#=new string('\t',depth)#>		{
-<#
- }
- }
+	Directory.SetCurrentDirectory(".."); 
+	subDirectories[depth].Dequeue();
+	if(subDirectories[depth].Count == 0)
+	{
+		subDirectories.RemoveAt(depth);
+		previousDepth = depth;
+		depth--; 
+	}
+}//End While
  
  #>
  

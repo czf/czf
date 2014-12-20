@@ -57,6 +57,7 @@ string directory = string.Empty;
 				
 <#=new string('\t',depth)#>			}<#}#>
 <#			if(fileNames.Any(x=>!x.StartsWith(".\\_"))){#>
+
 <#=new string('\t',depth)#>			/// <summary>Full Views for this directory</summary>
 <#=new string('\t',depth)#>			public static class FullView
 <#=new string('\t',depth)#>			{<#
@@ -70,9 +71,26 @@ string directory = string.Empty;
 <#=new string('\t',depth)#>		}
 <#
  Directory.SetCurrentDirectory(".."); 
- subDirectories.RemoveAt(depth);
- previousDepth = depth;
+subDirectories[depth].Pop();
+if(subDirectories[depth].Count == 0)
+{
+subDirectories.RemoveAt(depth);
+previousDepth = depth;
  depth--;
+ //Directory.SetCurrentDirectory(".."); 
+}
+
+//directory = subDirectories[depth].Pop();
+else //if(subDirectories[depth].Count > 0)
+{
+directory = subDirectories[depth].Peek();
+ Directory.SetCurrentDirectory(directory);#>
+ 
+<#=new string('\t',depth)#>		/// <summary>Directory</summary>
+<#=new string('\t',depth)#>		public static class <#=Path.GetFileNameWithoutExtension(directory)#>
+<#=new string('\t',depth)#>		{
+<#
+ }
  }
  
  #>

@@ -114,10 +114,6 @@
       <DependentUpon>ViewName.tt</DependentUpon>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Templates\ViewName.txt">
-      <DependentUpon>ViewName.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\WebAuction%28local%29\appSettings.config" />
@@ -190,7 +186,7 @@
     <ItemGroup>
       <!--<T4File Include="Templates\Asset.tt" />-->
       <T4File Include="Templates\ControllerName.tt" />
-      <!--<T4File Include="Templates\ViewName.tt" />-->
+      <T4File Include="Templates\ViewName.tt" />
     </ItemGroup>
     <!--	-c=&quot;%(T4File.Filename).cs&quot;-->
     <Exec Command="&quot;$(DevTools)\MonoDevelop.TextTemplating\TextTransform.exe&quot; &quot;%(T4File.FullPath)&quot; -o &quot;%(T4File.RootDir)%(T4File.Directory)%(T4File.Filename).cs&quot; " />

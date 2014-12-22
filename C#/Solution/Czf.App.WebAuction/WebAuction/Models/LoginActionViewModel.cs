@@ -19,7 +19,7 @@ namespace Czf.App.WebAuction.Models
 		/// <summary>
 		/// Gets or sets the Input
 		/// </summary>
-		LoginActionInputModel Input {get; set;} 
+		public LoginActionInputModel Input {get; set;} 
 		#endregion
 		
 		#region Constructors
@@ -29,6 +29,14 @@ namespace Czf.App.WebAuction.Models
 		public LoginActionViewModel()
 		{
 			Input = new LoginActionInputModel();
+		}
+		/// <summary>
+		/// Create an instance of LoginActionViewModel with the passed in input
+		/// </summary>
+		/// <param name="input"></param>
+		public LoginActionViewModel(LoginActionInputModel input)
+		{
+			Input = input;
 		}
 		#endregion
 		

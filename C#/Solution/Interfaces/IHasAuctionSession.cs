@@ -8,13 +8,12 @@
  */
 using System;
 using Czf.Domain.AuctionObjects.AuctionSessionObjects;
-using Czf.Domain.Interfaces.Consumers;
 namespace Czf.Domain.Interfaces
 {
 	/// <summary>
 	/// Description of IHasAuctionSession.
 	/// </summary>
-	public interface IHasAuctionSession : IAuctionSourceConsumer
+	public interface IHasAuctionSession
 	{
 		/// <summary>
 		/// Gets or sets the auction session.

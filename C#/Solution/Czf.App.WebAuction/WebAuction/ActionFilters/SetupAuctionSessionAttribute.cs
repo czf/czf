@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Czf.Domain.AuctionObjects;
 using Czf.Domain.AuctionObjects.AuctionSessionObjects;
+using Czf.App.WebAuction.Controllers;
 using Czf.Domain.Interfaces;
 using Czf.Domain;
 using Czf.Util.Common;
@@ -25,7 +26,7 @@ namespace Czf.App.WebAuction.ActionFilters
 		/// <param name="filterContext"></param>
 		public override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			IHasAuctionSession controller = filterContext.Controller as IHasAuctionSession;
+			GlobalAuctionController controller = filterContext.Controller as GlobalAuctionController;
 			if(controller!= null)
 			{
 				AuctionSession session = new AuctionSession();
@@ -35,7 +36,7 @@ namespace Czf.App.WebAuction.ActionFilters
 				}
 				
 				_auctionCookie = filterContext.HttpContext.Request.Cookies[_auctionCookieKey] ?? new HttpCookie(_auctionCookieKey);
-				
+				_auctionCookie.Path = "/";
 				//TODO: functionalize this uid get
 				if(_auctionCookie != null)
 				{
@@ -51,6 +52,25 @@ namespace Czf.App.WebAuction.ActionFilters
 				controller.AuctionSession = session;
 			}
 			
+		}
+		
+		/// <summary>
+		/// After the action is executed perform relevat actions on the Auction Session. 
+		/// </summary>
+		/// <param name="filterContext"></param>
+		public override void OnActionExecuted(ActionExecutedContext filterContext)
+		{
+			IHasAuctionSession controller = filterContext.Controller as IHasAuctionSession;
+			if(controller != null)
+			{
+				if(controller.AuctionSession != null)
+				{
+					_auctionCookie = filterContext.HttpContext.Request.Cookies[_auctionCookieKey] ?? new HttpCookie(_auctionCookieKey);
+					_auctionCookie.Expires = DateTime.Now.Add(new TimeSpan(4,0,0));
+					filterContext.HttpContext.Response.Cookies.Add(_auctionCookie);
+				}
+				
+			}
 		}
 		
 	}

@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Czf</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Czf.Domain</RootNamespace>
+    <AssemblyName>Czf.Domain</AssemblyName>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <ProductVersion>10.0.0</ProductVersion>
@@ -15,6 +15,7 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWin32Manifest>False</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x64</PlatformTarget>

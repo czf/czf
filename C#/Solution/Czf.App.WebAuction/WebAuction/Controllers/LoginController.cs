@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.AuctionObjects;
 using Czf.App.WebAuction.Models;
 using Czf.App.WebAuction.Models.InputViewModel;
 using Czf.Mvc.Common.ActionFilters;
-using Czf.Mvc.Common.Controllers;
 
 namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
 	/// Description of Login.
 	/// </summary>
-	public class LoginController : BaseAuctionController
+	public class LoginController : GlobalAuctionController
 	{
 
 		/// <summary>
@@ -36,11 +34,19 @@ namespace Czf.App.WebAuction.Controllers
 		public ActionResult LoginAction(LoginActionInputModel input)
 		{
 			User user = null;
+			ActionResult result = null;
 			if (input.CheckValidity()) {
 				user = input.SubmittedUser;
 				//Set user state/cookies
+				AuctionSession.User = user;
+				result = RedirectToAction("Index",ControllerName.Home);
 			}
-			return View("LoggedIn", new LoginActionViewModel());
+			else
+			{
+				result = View("LoggedIn", new LoginActionViewModel(input)); 
+			}
+			
+			return result;
 		}
 	}
 }

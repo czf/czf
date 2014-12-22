@@ -29,7 +29,7 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		public IAuctionSource AuctionSource { get; set;}
 		
 		/// <summary>
-		/// 
+		/// Resulting user from checking validity 
 		/// </summary>
 		public User SubmittedUser { get; protected set; }
 		#endregion

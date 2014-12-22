@@ -12,7 +12,8 @@
     <OlsDevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\Tools\\</OlsDevTools>
     <!--    <ClassicSite>$(SolutionDir)ClassicSite</ClassicSite>-->
     <ExecuteSqlScripts Condition=" '$(ExecuteSqlScripts)' == '' ">false</ExecuteSqlScripts>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WebAuctionRelease|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>

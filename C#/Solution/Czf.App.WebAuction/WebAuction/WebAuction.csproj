@@ -16,7 +16,8 @@
     <MvcBuildViews>true</MvcBuildViews>
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <ProcessAssets Condition=" '$(ProcessAssets)' == '' ">false</ProcessAssets>
     <AssetsOutputFile Condition=" '$(AssetsOutputFile)' == '' ">Config\\assets.config</AssetsOutputFile>
     <DevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\tools\\</DevTools>
@@ -53,7 +54,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <BaseAddress>4194304</BaseAddress>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
@@ -82,7 +83,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <RequiredTargetFramework>4.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -92,11 +93,12 @@
     <Reference Include="System.Web.WebPages" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <RequiredTargetFramework>4.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\SetupAuctionSessionAttribute.cs" />
+    <Compile Include="Controllers\GlobalAuctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -125,7 +127,7 @@
     <MinifyAndMerge Include="css\global.100.site.css" />
     <None Include="css\Site.css" />
     <Content Include="css\StyleSheetNotFound.css" />
-    <None Include="Global.asax" />
+    <Content Include="Global.asax" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Contact.cshtml">
     </Content>
@@ -142,9 +144,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ViewName.cs</LastGenOutput>
     </None>
-    <None Include="Views\Login\Index.cshtml" />
-    <None Include="Views\web.config" />
-    <None Include="web.config" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\Release" />

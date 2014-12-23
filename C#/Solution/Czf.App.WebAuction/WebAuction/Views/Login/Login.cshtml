@@ -1,6 +1,14 @@
-﻿@{
+﻿@model Czf.App.WebAuction.Models.LoginActionViewModel
+@{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_LayoutPage.cshtml";
+ 
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("LoginAction",Czf.App.WebAuction.ControllerName.Login, FormMethod.Post, new {@class="form"}))
+{
+@Html.TextBoxFor(model => model.Input.UserId, new {})
+<input type="submit" value="submit"/>
+}
+

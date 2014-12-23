@@ -14,9 +14,9 @@ namespace Czf.App.WebAuction.Controllers
 	[SetupAuctionSession]
 	public class GlobalAuctionController : BaseAuctionController
 	{
-		public void main()
+		public GlobalAuctionController()
 		{
-			
+			AuctionSource =  new Czf.Sources.AuctionSource.StubAuctionSource();
 		}
 	}
 }

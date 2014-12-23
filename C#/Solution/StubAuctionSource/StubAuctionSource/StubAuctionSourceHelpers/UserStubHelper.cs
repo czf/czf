@@ -41,7 +41,7 @@ namespace Czf.Sources.AuctionSource
 			                                   	Name = new Name("test", "user"),
 			                                   	UserName = "123"
 			                                   });
-			AuctionSource._domainDictionay[typeof(User)].Add(1,
+			AuctionSource._domainDictionay[typeof(User)].Add(2,
 			                                   new User{
 			                                   	Id = 2,
 			                                   	AuctionSource = AuctionSource,
@@ -57,7 +57,7 @@ namespace Czf.Sources.AuctionSource
 				(object keyObject) => 
 				{
 					string keyValue = keyObject as string;
-					return AuctionSource.GetAll<User>().Where(user => user.UserName == keyValue).ToList();
+					return AuctionSource.GetAll<User>().FirstOrDefault(user => user.UserName == keyValue);
 				}
 			);
 		}

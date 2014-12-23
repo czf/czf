@@ -24,6 +24,8 @@ namespace Czf.App.WebAuction
 			/// <summary>Full Views for this directory</summary>
 			public static class FullView
 			{				
+				/// <summary>String constant for the LoggedIn View.</summary>
+				public static readonly string LoggedIn = "LoggedIn";				
 				/// <summary>String constant for the Login View.</summary>
 				public static readonly string Login = "Login";
 			}

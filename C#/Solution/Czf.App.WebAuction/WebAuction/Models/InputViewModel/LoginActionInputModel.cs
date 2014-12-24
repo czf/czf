@@ -10,6 +10,7 @@ using System;
 using Czf.Domain.Interfaces.Consumers;
 using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.AuctionObjects;
+using Czf.Util.Common;
 namespace Czf.App.WebAuction.Models.InputViewModel
 {
 	/// <summary>
@@ -21,7 +22,7 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		/// <summary>
 		/// gets or sets the UserId 
 		/// </summary>
-		public int? UserId {get; set;} 
+		public string UserId {get; set;} 
 
 		/// <summary>
 		/// 
@@ -47,7 +48,7 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		/// Populates the InputModel with the passed in values
 		/// </summary>
 		/// <param name="userId">the user id</param>
-		public void PopulateInput(int? userId)
+		public void PopulateInput(string userId)
 		{
 			UserId = userId;
 		}
@@ -60,9 +61,9 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		{
 			bool result = false;
 			
-			if(UserId.HasValue)
+			if(!string.IsNullOrEmpty(UserId.Trim() ))
 			{
-				SubmittedUser = AuctionSource.GetByAlternateKey<User>(User.ALTKEY_BidNumber, UserId.Value);
+				SubmittedUser = AuctionSource.GetByAlternateKey<User>(User.ALTKEY_BidNumber, UserId.Trim());
 			}
 			result = SubmittedUser != null;
 			

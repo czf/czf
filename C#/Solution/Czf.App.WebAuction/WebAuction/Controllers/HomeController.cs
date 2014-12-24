@@ -13,7 +13,7 @@ namespace Czf.App.WebAuction.Controllers
 	/// <summary>
 	/// Controller for initial page
 	/// </summary>
-	public class HomeController : Controller
+	public class HomeController : GlobalAuctionController
 	{
 		/// <summary>
 		/// Setup intial page.

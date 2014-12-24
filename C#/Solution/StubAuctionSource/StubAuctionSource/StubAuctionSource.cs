@@ -100,7 +100,7 @@ namespace Czf.Sources.AuctionSource
 				result = (T)_alternateKeyGetters[key](KeyObject);
 			}
 			
-			return null;
+			return result;
 		}
 		/// <summary>
 		/// Get objects of type ChildT related to object of type ParentT with int identifier id

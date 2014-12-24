@@ -7,7 +7,7 @@ using Czf.App.WebAuction.Controllers;
 using Czf.Domain.Interfaces;
 using Czf.Domain;
 using Czf.Util.Common;
-
+using System.Threading;
 namespace Czf.App.WebAuction.ActionFilters
 {
 	/// <summary>
@@ -67,10 +67,21 @@ namespace Czf.App.WebAuction.ActionFilters
 				{
 					_auctionCookie = filterContext.HttpContext.Request.Cookies[_auctionCookieKey] ?? new HttpCookie(_auctionCookieKey);
 					_auctionCookie.Expires = DateTime.Now.Add(new TimeSpan(4,0,0));
+					if(controller.AuctionSession.User != null)
+					{
+						_auctionCookie[_auctionCookieUserIdKey] = controller.AuctionSession.User.Id.Value.ToString();
+					}
 					filterContext.HttpContext.Response.Cookies.Add(_auctionCookie);
 				}
 				
 			}
+		}
+		public override void OnResultExecuted(ResultExecutedContext filterContext)
+		{
+			
+			
+			filterContext.HttpContext.Response.End();
+			//Thread.Sleep(5000);
 		}
 		
 	}

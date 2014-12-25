@@ -16,7 +16,8 @@ namespace Czf.App.WebAuction.Controllers
 	{
 		public GlobalAuctionController()
 		{
-			AuctionSource =  new Czf.Sources.AuctionSource.StubAuctionSource();
+			Console.Write("asdfsadfsafsadfdsafsa\n");
+			///AuctionSource =  new Czf.Sources.AuctionSource.StubAuctionSource();
 		}
 	}
 }

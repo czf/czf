@@ -9,7 +9,10 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.Windsor;
+using Castle.Windsor.Configuration.Interpreters;
 using Czf.Domain.Global;
+using Czf.App.WebAuction.Misc;
 using System.IO;
 namespace Czf.App.WebAuction
 {
@@ -18,6 +21,10 @@ namespace Czf.App.WebAuction
 	/// </summary>
 	public class CzfWebAuction : HttpApplication
 	{
+		#region Privates
+		private static IWindsorContainer container;
+		#endregion
+		
 		/// <summary>
 		/// Register routing for WebAuction
 		/// </summary>
@@ -25,6 +32,7 @@ namespace Czf.App.WebAuction
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.Ignore("{resource}.axd/{*pathInfo}");
+			routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 			routes.MapRoute(
 				"Default",
 				"{controller}/{action}/{id}",
@@ -41,6 +49,18 @@ namespace Czf.App.WebAuction
 		protected void Application_Start()
 		{
 			RegisterRoutes(RouteTable.Routes);
+			BootstrapContainer();
 		}
+		protected void Application_End()
+		{
+    		container.Dispose();
+		}
+		#region Private Methods
+		private static void BootstrapContainer()
+		{
+			container = new WindsorContainer(new XmlInterpreter());
+			WindsorControllerFactory controllerFactory = new WindsorControllerFactory(container.Kernel);
+    		ControllerBuilder.Current.SetControllerFactory(controllerFactory);		}
+		#endregion
 	}
 }

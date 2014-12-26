@@ -27,6 +27,7 @@ namespace Czf.App.WebAuction.ActionFilters
 		public override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
 			GlobalAuctionController controller = filterContext.Controller as GlobalAuctionController;
+			
 			if(controller!= null)
 			{
 				AuctionSession session = new AuctionSession();
@@ -51,15 +52,16 @@ namespace Czf.App.WebAuction.ActionFilters
 				
 				controller.AuctionSession = session;
 			}
-			
+			base.OnActionExecuting(filterContext);
 		}
 		
 		/// <summary>
-		/// After the action is executed perform relevat actions on the Auction Session. 
+		/// After the action is executed perform relevant actions on the Auction Session. 
 		/// </summary>
 		/// <param name="filterContext"></param>
 		public override void OnActionExecuted(ActionExecutedContext filterContext)
 		{
+			base.OnActionExecuted(filterContext);
 			IHasAuctionSession controller = filterContext.Controller as IHasAuctionSession;
 			if(controller != null)
 			{
@@ -76,13 +78,5 @@ namespace Czf.App.WebAuction.ActionFilters
 				
 			}
 		}
-		public override void OnResultExecuted(ResultExecutedContext filterContext)
-		{
-			
-			
-			filterContext.HttpContext.Response.End();
-			//Thread.Sleep(5000);
-		}
-		
 	}
 }

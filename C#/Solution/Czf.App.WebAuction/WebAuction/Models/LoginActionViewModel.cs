@@ -7,7 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Czf.Domain.AuctionObjects;
 using Czf.App.WebAuction.Models.InputViewModel;
+using Czf.App.WebAuction;
 namespace Czf.App.WebAuction.Models
 {
 	/// <summary>
@@ -26,9 +28,9 @@ namespace Czf.App.WebAuction.Models
 		/// <summary>
 		/// Create an instance of LoginActionViewModel
 		/// </summary>
-		public LoginActionViewModel()
+		public LoginActionViewModel(User user)
 		{
-			Input = new LoginActionInputModel();
+			Input = new LoginActionInputModel(user);
 		}
 		/// <summary>
 		/// Create an instance of LoginActionViewModel with the passed in input

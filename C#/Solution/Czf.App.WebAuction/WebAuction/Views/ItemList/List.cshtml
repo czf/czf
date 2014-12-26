@@ -1,0 +1,13 @@
+﻿@model ItemListViewModel
+@{
+	ViewBag.Title = "List";
+	Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>List</h2>
+
+@foreach(BaseAuctionItem item in Model.AuctionItems)
+{
+	@Html.ActionLink(item.Title, "item", ControllerName.Item,new {id=item.Id}, new{})
+	
+}

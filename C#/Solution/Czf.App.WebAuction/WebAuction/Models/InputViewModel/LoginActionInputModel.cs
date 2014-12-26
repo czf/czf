@@ -25,7 +25,7 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		public string UserId {get; set;} 
 
 		/// <summary>
-		/// 
+		/// a reference to the AuctionSource
 		/// </summary>
 		public IAuctionSource AuctionSource { get; set;}
 		
@@ -36,10 +36,20 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		#endregion
 		#region Constructor
 		/// <summary>
-		/// constructor 
+		///  Create an instance of LoginActionInputModel
 		/// </summary>
-		public LoginActionInputModel()
-		{		}
+		public LoginActionInputModel(){}
+		
+		/// <summary>
+		///  Create an instance of LoginActionInputModel 
+		/// </summary>
+		public LoginActionInputModel(User user)
+		{		
+			if(user != null)
+			{
+				UserId = user.UserName;
+			}
+		}
 		#endregion
 		
 				

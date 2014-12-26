@@ -14,10 +14,12 @@ namespace Czf.App.WebAuction.Controllers
 	[SetupAuctionSession]
 	public class GlobalAuctionController : BaseAuctionController
 	{
+		/// <summary>
+		/// Create an instance of GlobalAuctionController
+		/// </summary>
 		public GlobalAuctionController()
 		{
-			Console.Write("asdfsadfsafsadfdsafsa\n");
-			///AuctionSource =  new Czf.Sources.AuctionSource.StubAuctionSource();
+			
 		}
 	}
 }

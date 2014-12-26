@@ -33,6 +33,21 @@ namespace Czf.App.WebAuction
 		{
 			routes.Ignore("{resource}.axd/{*pathInfo}");
 			routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+//			routes.MapRoute(  //http://stackoverflow.com/questions/3874625/mvc-route-with-array-of-homogeneous-parameters
+//			).RouteHandler    //custom handler to handle an array.
+			
+			routes.MapRoute(
+				"Item",
+				"item_i{id}",
+				new {
+					controller = ControllerName.Item,
+					action="item"
+				},
+				new{
+					id = @"\d+"
+				}
+			);
+						
 			routes.MapRoute(
 				"Default",
 				"{controller}/{action}/{id}",
@@ -51,6 +66,10 @@ namespace Czf.App.WebAuction
 			RegisterRoutes(RouteTable.Routes);
 			BootstrapContainer();
 		}
+		
+		/// <summary>
+		/// When this application ends run clean up tasks
+		/// </summary>
 		protected void Application_End()
 		{
     		container.Dispose();
@@ -60,7 +79,8 @@ namespace Czf.App.WebAuction
 		{
 			container = new WindsorContainer(new XmlInterpreter());
 			WindsorControllerFactory controllerFactory = new WindsorControllerFactory(container.Kernel);
-    		ControllerBuilder.Current.SetControllerFactory(controllerFactory);		}
+    		ControllerBuilder.Current.SetControllerFactory(controllerFactory);		
+		}
 		#endregion
 	}
 }

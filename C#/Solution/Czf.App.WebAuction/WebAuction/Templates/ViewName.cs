@@ -19,6 +19,28 @@ namespace Czf.App.WebAuction
 		}
 
 		/// <summary>Directory</summary>
+		public static class Item
+		{
+			/// <summary>Full Views for this directory</summary>
+			public static class FullView
+			{				
+				/// <summary>String constant for the Item View.</summary>
+				public static readonly string Item = "Item";
+			}
+		}
+
+		/// <summary>Directory</summary>
+		public static class ItemList
+		{
+			/// <summary>Full Views for this directory</summary>
+			public static class FullView
+			{				
+				/// <summary>String constant for the List View.</summary>
+				public static readonly string List = "List";
+			}
+		}
+
+		/// <summary>Directory</summary>
 		public static class Login
 		{
 			/// <summary>Full Views for this directory</summary>

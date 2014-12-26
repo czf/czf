@@ -108,7 +108,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Misc\WindsorControllerFactory.cs" />
-    <Compile Include="Models\GlobalAuctionViewMode.cs" />
+    <Compile Include="Models\GlobalAuctionViewModel.cs" />
     <Compile Include="Models\InputViewModel\LoginActionInputModel.cs" />
     <Compile Include="Models\ItemListViewModel.cs" />
     <Compile Include="Models\ItemViewModel.cs" />

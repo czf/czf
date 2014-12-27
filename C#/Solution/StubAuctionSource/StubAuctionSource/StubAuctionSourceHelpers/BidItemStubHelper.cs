@@ -9,6 +9,7 @@
 using System;
 using Czf.Domain.AuctionObjects;
 using System.Linq;
+using Czf.Domain.Global;
 using System.Collections.Generic;
 namespace Czf.Sources.AuctionSource
 {
@@ -37,7 +38,9 @@ namespace Czf.Sources.AuctionSource
 			                                      	AuctionSource = AuctionSource,	
 			                                      	Description = "A widget that widgets.",
 			                                      	Title = "widget 1",
-			                                      	Value = 100			                                      			       
+			                                      	Value = 100,
+				                                    SortOrder = 2,
+				                                    Status = AuctionItemStatus.Active
 			                                      });
 			AuctionSource._domainDictionay[typeof(BidItem)].Add(2,
 			                                      	new BidItem{
@@ -45,7 +48,8 @@ namespace Czf.Sources.AuctionSource
 			                                      	AuctionSource = AuctionSource,	
 			                                      	Description = "A do something that somethings.",
 			                                      	Title = "do something 1",
-			                                      	Value = 101
+			                                      	Value = 101,
+			                                      	SortOrder = 3
 			                                      });
 		}
 		#endregion

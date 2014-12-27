@@ -9,6 +9,7 @@
 using System;
 using Czf.Domain.AuctionObjects;
 using Czf.Domain.BaseClasses;
+using Czf.App.WebAuction.Models.InputViewModel;
 namespace Czf.App.WebAuction.Models
 {
 	/// <summary>
@@ -24,6 +25,11 @@ namespace Czf.App.WebAuction.Models
 		/// </summary>
 		public BaseAuctionItem Item {get; set;}
 		
+		/// <summary>
+		/// Input data for this bid action
+		/// </summary>
+		public BidActionInputModel Input {get; set;}
+		
 		#endregion
 		#region Constructors
 		
@@ -32,6 +38,7 @@ namespace Czf.App.WebAuction.Models
 		/// </summary>
 		public ItemViewModel()
 		{
+			Input = new BidActionInputModel();
 		}
 		#endregion
 		#region Methods

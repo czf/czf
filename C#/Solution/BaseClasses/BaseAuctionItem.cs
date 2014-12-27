@@ -8,7 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
-using Czf.Domain.BaseClasses;
+using Czf.Domain.AuctionObjects;
 using Czf.Domain.Interfaces.Consumers;
 using Czf.Domain.Interfaces.Sources;
 using Czf.Domain.Global;
@@ -59,6 +59,12 @@ namespace Czf.Domain.BaseClasses
 		/// </summary>
 		/// <returns></returns>
 		public AuctionItemStatus Status {get; set;}
+		
+		/// <summary>
+		/// Order in which this Item should be listed. 
+		/// </summary>
+		public int SortOrder {get; set;}
+		
 		#endregion
 		
 		#region constructors
@@ -74,6 +80,14 @@ namespace Czf.Domain.BaseClasses
 		#endregion
 		
 		#region Methods
+		
+		/// <summary>
+		/// Creates a new bid on this item for the passed in user for the passed in amount
+		/// </summary>
+		/// <param name="user">the user making the bid</param>
+		/// <param name="amount">the amount the bid is for</param>
+		public abstract void AddBid(User user, decimal amount);
+		
 		/// <summary>
 		/// Updates this Item to active
 		/// </summary>

@@ -62,6 +62,12 @@ namespace Czf.Domain.AuctionObjects
 		#endregion
 		
 		#region Methods
+		
+		public override void AddBid(User user, decimal amount)
+		{
+			Purchase(user);
+		}
+		
 		/// <summary>
 		/// Allows a users to purchase this item
 		/// </summary>
@@ -76,14 +82,15 @@ namespace Czf.Domain.AuctionObjects
 				UsersPurchased.Add(user);
 				if(!Save())
 				{
-					QuantityAvailable ++;
+					QuantityAvailable++;
 					UsersPurchased.Remove(user);
 				}
 				else
 				{
-//					Bid purchaseBid = AuctionSource.Create<Bid>();
-//					purchaseBid.Amount = Price;
-//					purchaseBid.BidUser =user;
+					Bid purchaseBid = AuctionSource.Create<Bid>();
+					purchaseBid.Amount = Price;
+					purchaseBid.BidUser = user;
+					purchaseBid.Save();
 					result = true;
 				}
 			}

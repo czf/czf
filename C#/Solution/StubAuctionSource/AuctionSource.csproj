@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StubAuctionSource\StubAuctionSource.cs" />
+    <Compile Include="StubAuctionSource\StubAuctionSourceHelpers\BaseAuctionItemStubHelper.cs" />
     <Compile Include="StubAuctionSource\StubAuctionSourceHelpers\BidItemStubHelper.cs" />
     <Compile Include="StubAuctionSource\StubAuctionSourceHelpers\BidStubHelper.cs" />
     <Compile Include="StubAuctionSource\StubAuctionSourceHelpers\PurchaseItemStubHelper.cs" />

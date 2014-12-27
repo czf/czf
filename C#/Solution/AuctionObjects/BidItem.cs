@@ -59,26 +59,29 @@ namespace Czf.Domain.AuctionObjects
 		#endregion
 		
 		#region Methods
+		public override void AddBid(User user, decimal amount)
+		{
+			BidOnThis(user, amount);
+		}
+		
 		/// <summary>
 		/// Allows for bidding on a BidItem.
 		/// </summary>
-		/// <param name="bid">The bid being submitted</param>
-		/// /// <param name = "HighestBid"></param>
+		/// <param name="user"></param>
+		/// <param name="amount"></param>
+		/// <returns></returns>
 		/// <returns>false when can't access bid data or update bid. Higestbid is the the highest valid bid or null if no bid.</returns>
-		public bool BidOnThis(Bid bid, out Bid HighestBid)
+		public void BidOnThis(User user, decimal amount) 
 		{
-			bool result = false;
-			HighestBid = null;
-			if(Status.HasFlag(AuctionItemStatus.Active))
+			Bid bid = AuctionSource.Create<Bid>();
+			bid.Amount = amount;
+			bid.BidUser = user;
+			bid.DateMade = DateTime.Now;
+			bid.ItemIdForBid = Id.Value;
+			if(bid.Save())
 			{
-				if(bid.Save())
-				{
-					ItemBids.Add(bid);
-					result = true;
-				}
+				ItemBids.Add(bid);
 			}
-			HighestBid = CurrentBid;
-			return result;
 		}	
 		
 		public override bool Save()

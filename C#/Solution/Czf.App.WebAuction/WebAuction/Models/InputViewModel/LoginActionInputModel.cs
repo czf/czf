@@ -69,6 +69,7 @@ namespace Czf.App.WebAuction.Models.InputViewModel
 		/// <returns>true if the input model is in an acceptable state, otherwise false</returns>
 		public bool CheckValidity()
 		{
+			//TODO Error/warning Messages
 			bool result = false;
 			
 			if(!string.IsNullOrEmpty(UserId.Trim() ))

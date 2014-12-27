@@ -3,12 +3,13 @@ using System.Diagnostics.Eventing.Reader;
 using Czf.Domain.BaseClasses;
 using Czf.Domain.AuctionObjects;
 using Czf.Domain.Interfaces.Sources;
+using Czf.Domain.Interfaces.Consumers;
 namespace Czf.Domain.AuctionObjects
 {
 	/// <summary>
 	/// Bids are placed on BidItem instances by a User.
 	/// </summary>
-	public class Bid : IdentifiedByInt
+	public class Bid : IdentifiedByInt, IAuctionSourceConsumer
 	{
 		
 		#region Private

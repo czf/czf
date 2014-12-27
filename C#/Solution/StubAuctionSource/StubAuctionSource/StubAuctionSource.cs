@@ -31,6 +31,7 @@ namespace Czf.Sources.AuctionSource
 		internal Dictionary<Tuple<Type,string>, Func<object,object>> _alternateKeyGetters;
 		internal Dictionary<Type, Func<object, bool>> _savers;
 		internal Dictionary<Type, Func<object, bool>> _deleters;
+		internal Dictionary<Type, Func<int, object>> _customGetter;
 		#endregion
 		#endregion
 		/// <summary>
@@ -43,11 +44,13 @@ namespace Czf.Sources.AuctionSource
 			_alternateKeyGetters = new Dictionary<Tuple<Type,string>, Func<object, object>>();
 			_savers = new Dictionary<Type, Func<object, bool>>();
 			_deleters = new Dictionary<Type, Func<object, bool>>();
+			_customGetter = new Dictionary<Type, Func<int, object>>();
 			_helpers = new List<object>()
 			{
 				new BidStubHelper(this),
 				new BidItemStubHelper(this),
-				new UserStubHelper(this)
+				new UserStubHelper(this),
+				new BaseAuctionItemStubHelper(this)
 			};
 			
 		}
@@ -58,17 +61,22 @@ namespace Czf.Sources.AuctionSource
 		/// <returns></returns>
 		public T Get<T>(int id) where T : class
 		{
+			Type key = typeof(T);
 			T result = null;
-			if (_domainDictionay.ContainsKey(typeof(T))) {
-				if(_domainDictionay[typeof(T)].ContainsKey(id))
+			if (_domainDictionay.ContainsKey(key)) {
+				if(_domainDictionay[key].ContainsKey(id))
 				{
-					result = (T)_domainDictionay[typeof(T)][id]; // passing a reference so modifiations are made directly 
+					result = (T)_domainDictionay[key][id]; // passing a reference so modifiations are made directly 
 																 // might need copy constructors for actual tests later
 				}
 			}
+			else if(_customGetter.ContainsKey(key))
+			{
+				result = (T)_customGetter[key](id);
+			}
 			else
 			{
-				throw new NotImplementedException("type " + typeof(T) + " is missing from domainDictionary");
+				throw new NotImplementedException("type " + key + " is missing from domainDictionary");
 			}
 			return result;
 		}
@@ -144,9 +152,12 @@ namespace Czf.Sources.AuctionSource
 		{
 			IdentifiedByInt target = targetObj as IdentifiedByInt;
 			Dictionary<int, object> all = _domainDictionay[typeof(T)];
-			if(!target.Id.HasValue)
+			if(!target.Id.HasValue) //TODO update this to maintain identity after delete
 			{
-				target.Id = all.Keys.Max();
+				if(all.Any())
+					target.Id = all.Keys.Max();
+				else
+					target.Id = 1;
 			}
 			all[target.Id.Value] = target;
 			return true;

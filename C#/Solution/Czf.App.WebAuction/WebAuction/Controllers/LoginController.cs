@@ -19,6 +19,7 @@ namespace Czf.App.WebAuction.Controllers
 		/// Setup the inital login page
 		/// </summary>
 		/// <returns></returns>
+		[HttpGet]
 		public ActionResult Index()
 		{			
 			LoginActionViewModel model = new LoginActionViewModel(AuctionSession.User);
@@ -31,6 +32,7 @@ namespace Czf.App.WebAuction.Controllers
 		/// <param name="input"></param>
 		/// <returns></returns>
 		[SetInputSources]
+		[HttpPost]
 		public ActionResult LoginAction(LoginActionInputModel input)
 		{
 			User user = null;

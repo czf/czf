@@ -39,6 +39,7 @@ namespace Czf.Sources.AuctionSource
 			                                                     Description = "Poker night for the group hosted by some person.",
 			                                                     Title = "Poker night",
 			                                                     QuantityAvailable = 5,
+			                                                     SortOrder = 1
 			                                                         });
 			AuctionSource._relatedGetters.Add(
 				new Tuple<Type,Type>(typeof(User),typeof(PurchaseItem)), 

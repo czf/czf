@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Misc\WindsorControllerFactory.cs" />
     <Compile Include="Models\GlobalAuctionViewModel.cs" />
+    <Compile Include="Models\InputViewModel\BidActionInputModel.cs" />
     <Compile Include="Models\InputViewModel\LoginActionInputModel.cs" />
     <Compile Include="Models\ItemListViewModel.cs" />
     <Compile Include="Models\ItemViewModel.cs" />

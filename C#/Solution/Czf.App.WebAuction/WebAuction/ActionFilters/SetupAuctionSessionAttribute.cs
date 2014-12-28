@@ -7,7 +7,6 @@ using Czf.App.WebAuction.Controllers;
 using Czf.Domain.Interfaces;
 using Czf.Domain;
 using Czf.Util.Common;
-using System.Threading;
 namespace Czf.App.WebAuction.ActionFilters
 {
 	/// <summary>

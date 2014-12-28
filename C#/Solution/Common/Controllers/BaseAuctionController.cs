@@ -9,12 +9,17 @@ namespace Czf.Mvc.Common.Controllers
 	/// <summary>
 	/// Description of BaseAuctionController.
 	/// </summary>
-	public abstract class BaseAuctionController : Controller, IAuctionSourceConsumer, IHasAuctionSession
+	public abstract class BaseAuctionController : Controller, IAuctionSourceConsumer, IHasAuctionSession, IAuctionSettingsConsumer
 	{
 		/// <summary>
-		/// An reference to an IAuctionSource
+		/// A reference to an IAuctionSource
 		/// </summary>
 		public IAuctionSource AuctionSource {get; set;}
+		
+		/// <summary>
+		/// A reference to an IAuctionSettings
+		/// </summary>
+		public IAuctionSettings AuctionSettings {get; set;}
 		
 		/// <summary>
 		/// Auction data relating to this session;

@@ -17,5 +17,7 @@ namespace Czf.App.WebAuction
 		public static readonly string Login = "Login";
   		/// <summary>String constant for the Settings controller.</summary>
 		public static readonly string Settings = "Settings";
+  		/// <summary>String constant for the UserOptions controller.</summary>
+		public static readonly string UserOptions = "UserOptions";
  	}
 }

@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\RedirectToLoginAttribute.cs" />
     <Compile Include="ActionFilters\SetupAuctionSessionAttribute.cs" />
     <Compile Include="Controllers\GlobalAuctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Controllers\ItemListController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\UserOptionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,6 +179,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Czf.Sources.AuctionSettings\AuctionSettings\AuctionSettings.csproj">
+      <Project>{4E18A2FC-9960-4FB9-AFCE-9104DAA3FDC0}</Project>
+      <Name>AuctionSettings</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Czf.Util.Common\Czf.Util.Common.csproj">
       <Project>{22F228A1-956C-44E1-AB81-9262E6B9CB0B}</Project>

@@ -24,6 +24,9 @@ namespace Czf.Domain.AuctionObjects
 		#endregion
 
 		#region Constants
+		/// <summary>
+		/// Alternate getter by bid number.
+		/// </summary>
 		public static readonly string ALTKEY_BidNumber = "BidNumber";
 		#endregion
 		#region Properties
@@ -38,7 +41,9 @@ namespace Czf.Domain.AuctionObjects
 		/// </summary>
 		public string UserName {get; set;} 
 		
-		
+		/// <summary>
+		/// All bids made by this user.
+		/// </summary>
 		public List<Bid> UserBids 
 		{
 			get
@@ -52,10 +57,11 @@ namespace Czf.Domain.AuctionObjects
 		}
 		#endregion
 		#region Constructors
+		/// <summary>
+		/// Create an instance of user
+		/// </summary>
 		public User()
-		{
-			
-			
+		{			
 		}
 		#endregion
 	}

@@ -11,7 +11,8 @@ namespace Czf.App.WebAuction.Controllers
 	/// <summary>
 	/// Description of GlobalAuctionController.
 	/// </summary>
-	[SetupAuctionSession]
+	[SetupAuctionSession(Order=1)]
+	[RedirectToLogin(Order=2)]
 	public class GlobalAuctionController : BaseAuctionController
 	{
 		/// <summary>
@@ -20,6 +21,12 @@ namespace Czf.App.WebAuction.Controllers
 		public GlobalAuctionController()
 		{
 			
+		}
+		
+		//Creates a redirect to the login action
+		public RedirectToRouteResult RedirectToLogin()
+		{
+			return RedirectToAction("Index",ControllerName.Login);
 		}
 	}
 }

@@ -70,7 +70,9 @@
     <Compile Include="GenericObjects\BaseAuctionSource.cs" />
     <Compile Include="GenericObjects\Name.cs" />
     <Compile Include="Global\Enums.cs" />
+    <Compile Include="Interfaces\Consumers\IAuctionSettingsConsumer.cs" />
     <Compile Include="Interfaces\Consumers\IAuctionSourceConsumer.cs" />
+    <Compile Include="Interfaces\IAuctionSettings.cs" />
     <Compile Include="Interfaces\ICachable.cs" />
     <Compile Include="Interfaces\IHasAuctionSession.cs" />
     <Compile Include="Interfaces\Sources\IAuctionSource.cs" />

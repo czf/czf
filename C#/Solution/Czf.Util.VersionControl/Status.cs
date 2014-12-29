@@ -66,18 +66,17 @@ namespace Czf.Util.VersionControl
 				
 				if (output.Length >2)
 				{
-					fileStatus.Status = output.Substring(0,2);
+					fileStatus.Status = output.Substring(0,2).Trim();
 					string[] states = {"M","A","U","D"};
+
 					if (states.Any(x=>output.Contains(x)))
 					{
 						command.StartInfo.Arguments = "log --format=%ad \""+ file + "\"";
 							command.Start();
 						output = command.StandardOutput.ReadToEnd();
-						if (output != null && output != string.Empty)
-						{
+						if (!string.IsNullOrEmpty(output)) {
 							DateTime lastCommit = DateTime.Now;
-							if(DateTime.TryParse(output,out lastCommit))
-							{
+							if (DateTime.TryParse(output, out lastCommit)) {
 								fileStatus.LastCommitDateAsInt = lastCommit.Ticks;
 							}
 						}

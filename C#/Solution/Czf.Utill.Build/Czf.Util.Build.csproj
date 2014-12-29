@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddAssetKey.cs" />
+    <Compile Include="AddVersionControlStatus.cs" />
     <Compile Include="BuildAssetConfig.cs" />
     <Compile Include="SortItems.cs" />
   </ItemGroup>

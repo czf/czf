@@ -23,7 +23,9 @@ namespace Czf.App.WebAuction.Controllers
 			
 		}
 		
-		//Creates a redirect to the login action
+		/// <summary>
+		/// Creates a redirect to the login action
+		/// </summary>
 		public RedirectToRouteResult RedirectToLogin()
 		{
 			return RedirectToAction("Index",ControllerName.Login);

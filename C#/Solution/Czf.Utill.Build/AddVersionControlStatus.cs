@@ -93,7 +93,7 @@ namespace Czf.Util.Build
 		#region Methods
 
         /// <summary>
-        /// Executes the AddSvnStatus task.
+        /// Executes the AddVersionControlStatus task.
         /// </summary>
         /// <returns>
         /// true if the task successfully executed; otherwise, false.

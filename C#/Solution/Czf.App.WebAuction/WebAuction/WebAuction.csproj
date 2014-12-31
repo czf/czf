@@ -177,7 +177,11 @@
     <Folder Include="Views\Item" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj">
+    <ProjectReference Include="..\..\Czf.Domain\Domain\Domain.csproj">
+      <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Czf.Mvc.Common\Common\Common.csproj">
       <Project>{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}</Project>
       <Name>Common</Name>
     </ProjectReference>
@@ -185,17 +189,13 @@
       <Project>{4E18A2FC-9960-4FB9-AFCE-9104DAA3FDC0}</Project>
       <Name>AuctionSettings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Czf.Sources.AuctionSource\AuctionSource\AuctionSource.csproj">
+      <Project>{23F7C225-9978-4EC1-9BE3-2DCF30862629}</Project>
+      <Name>AuctionSource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Czf.Util.Common\Czf.Util.Common.csproj">
       <Project>{22F228A1-956C-44E1-AB81-9262E6B9CB0B}</Project>
       <Name>Czf.Util.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Domain.csproj">
-      <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\StubAuctionSource\AuctionSource.csproj">
-      <Project>{23F7C225-9978-4EC1-9BE3-2DCF30862629}</Project>
-      <Name>AuctionSource</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

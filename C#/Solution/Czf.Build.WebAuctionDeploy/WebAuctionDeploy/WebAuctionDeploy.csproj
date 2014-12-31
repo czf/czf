@@ -8,7 +8,7 @@
     <AssemblyName>WebAuctionDeploy</AssemblyName>-->
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <SolutionDir Condition=" '$(SolutionDir)' == '' ">..\</SolutionDir>
-    <OutputPath Condition=" '$(OutputPath)' == '' ">$(MSBuildProjectDirectory)\\..\\BuildOutput</OutputPath>
+    <OutputPath Condition=" '$(OutputPath)' == '' ">$(MSBuildProjectDirectory)\\..\\..\\BuildOutput</OutputPath>
     <OlsDevTools Condition=" '$(DevTools)' == '' ">d:\\dev\\Tools\\</OlsDevTools>
     <!--    <ClassicSite>$(SolutionDir)ClassicSite</ClassicSite>-->
     <ExecuteSqlScripts Condition=" '$(ExecuteSqlScripts)' == '' ">false</ExecuteSqlScripts>
@@ -29,29 +29,26 @@
     </WebProject>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Czf.App.WebAuction\WebAuction\WebAuction.csproj">
-      <Project>{44352475-efdd-409f-a91d-8c8fa3383d23}</Project>
-      <Name>WebAuction</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Czf.App.WebAuction\WebAuction\WebAuction.csproj">
+      <Project>{810DC096-98DE-4248-A8E4-E305455CEA81}</Project>
+      <Name>WebAuction</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
-  <Message Text="^^^^^^^^^^^^^^^^^^Before build^^^^" Importance="high" />
+    <Message Text="^^^^^^^^^^^^^^^^^^Before build^^^^" Importance="high" />
   </Target>
   <Target Name="MergeWebProjects">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;%(WebProject.ProjectOutputPath)&quot; &quot;$(OutputPath)\\bin&quot; /NP 1&gt;nul" ContinueOnError="true" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <MSBuild Projects="%(WebProject.Identity)" 
-		Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\" 
-		Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
+    <MSBuild Projects="%(WebProject.Identity)" Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\" Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
     <OnError ExecuteTargets="MessageErrorHandler" />
   </Target>
   <Target Name="Build">

@@ -49,7 +49,7 @@
     <Compile Include="StubAuctionSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain.csproj">
+    <ProjectReference Include="..\..\Czf.Domain\Domain\Domain.csproj">
       <Project>{791687F9-3097-41E6-9C34-73B62481CC5D}</Project>
       <Name>Domain</Name>
     </ProjectReference>

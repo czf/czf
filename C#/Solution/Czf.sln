@@ -12,13 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Sources", "Czf.Sources"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New Folder", "New Folder", "{6262581C-88A8-4838-A0AE-69FD7DC16E27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionSource", "StubAuctionSource\AuctionSource.csproj", "{23F7C225-9978-4EC1-9BE3-2DCF30862629}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionSource", "Czf.Sources.AuctionSource\AuctionSource\AuctionSource.csproj", "{23F7C225-9978-4EC1-9BE3-2DCF30862629}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionSettings", "Czf.Sources.AuctionSettings\AuctionSettings\AuctionSettings.csproj", "{4E18A2FC-9960-4FB9-AFCE-9104DAA3FDC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Domain", "Czf.Domain", "{37431516-E372-40BF-8A79-D582620711CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain.csproj", "{791687F9-3097-41E6-9C34-73B62481CC5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Czf.Domain\Domain\Domain.csproj", "{791687F9-3097-41E6-9C34-73B62481CC5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Util", "Czf.Util", "{EF12C52B-6C39-443C-AE25-23076C84AAF0}"
 EndProject
@@ -32,11 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.SQL", "Czf.SQL", "{6A1F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Mvc", "Czf.Mvc", "{D596575A-E868-453E-AC23-DCA07B95725C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Czf.Mvc.Common\Common\Common.csproj", "{D803FF2D-7AEB-4CDC-9717-C0100F83A45C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Czf.Build", "Czf.Build", "{859A96E8-136C-4EA9-8C3D-C310655995B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuctionDeploy", "WebAuctionDeploy\WebAuctionDeploy.csproj", "{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuctionDeploy", "Czf.Build.WebAuctionDeploy\WebAuctionDeploy\WebAuctionDeploy.csproj", "{BA3A0BCA-B62B-4DEF-B766-BC9A0819672D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

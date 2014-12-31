@@ -31,7 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Czf.App.WebAuction\WebAuction\WebAuction.csproj">
       <Project>{44352475-efdd-409f-a91d-8c8fa3383d23}</Project>
-      <Name>Onlineshoes</Name>
+      <Name>WebAuction</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -43,12 +43,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
+  <Message Text="^^^^^^^^^^^^^^^^^^Before build^^^^" Importance="high" />
   </Target>
   <Target Name="MergeWebProjects">
     <Exec Command="&quot;$(DevTools)robocopy.exe&quot; &quot;%(WebProject.ProjectOutputPath)&quot; &quot;$(OutputPath)\\bin&quot; /NP 1&gt;nul" ContinueOnError="true" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <MSBuild Projects="%(WebProject.Identity)" Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\" Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
+    <MSBuild Projects="%(WebProject.Identity)" 
+		Properties="AssetsOutputFile=$(OutputPath)%(RelativePath)Config\assets.config;ProcessAssets=true;WebProjectOutputDir=$(OutputPath)%(RelativePath);OutDir=$(OutputPath)%(RelativePath)\bin\" 
+		Targets="AddConfigFilesToContent;ResolveReferences;_CopyWebApplication;ProcessAssetFiles" />
     <OnError ExecuteTargets="MessageErrorHandler" />
   </Target>
   <Target Name="Build">

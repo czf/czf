@@ -90,7 +90,9 @@ namespace Ols.Core.Util.Build
 			XmlNode assetNode;
 			XmlAttribute original;
 			XmlAttribute location;
-			if ((DesktopCssFile != null) && (DesktopCssFile.Length > 0))
+			
+			base.Log.LogMessage("OutputFile: " + OutputFile);
+			if (!string.IsNullOrEmpty(DesktopCssFile))
 			{
 				if (!sections.ContainsKey("stylesheets"))
 				{
@@ -106,7 +108,7 @@ namespace Ols.Core.Util.Build
 				sections["stylesheets"].AppendChild(assetNode);
 			}
 
-			if ((MobileCssFile != null) && (MobileCssFile.Length > 0))
+			if (!string.IsNullOrEmpty(MobileCssFile))
 			{
 				if (!sections.ContainsKey("stylesheets"))
 				{
@@ -122,9 +124,9 @@ namespace Ols.Core.Util.Build
 				sections["stylesheets"].AppendChild(assetNode);
 			}
 
-			if ((TabletCssFile != null) && (TabletCssFile.Length > 0))
+			if (!string.IsNullOrEmpty(TabletCssFile))
 			{
-				if (!sections.ContainsKey("stylesheets"))
+				if (!sections.ContainsKey("stylesheets")) 
 				{
 					sections["stylesheets"] = assetsXml.CreateNode(XmlNodeType.Element, "stylesheets", "");
 				}
@@ -138,9 +140,9 @@ namespace Ols.Core.Util.Build
 				sections["stylesheets"].AppendChild(assetNode);
 			}
 
-			if ((DesktopScriptFile != null) && (DesktopScriptFile.Length > 0))
+			if (!string.IsNullOrEmpty(DesktopScriptFile)) 
 			{
-				if (!sections.ContainsKey("scripts"))
+				if (!sections.ContainsKey("scripts")) 
 				{
 					sections["scripts"] = assetsXml.CreateNode(XmlNodeType.Element, "scripts", "");
 				}
@@ -154,7 +156,7 @@ namespace Ols.Core.Util.Build
 				sections["scripts"].AppendChild(assetNode);
 			}
 
-			if ((MobileScriptFile != null) && (MobileScriptFile.Length > 0))
+			if (!string.IsNullOrEmpty(MobileScriptFile))
 			{
 				if (!sections.ContainsKey("scripts"))
 				{
@@ -170,7 +172,7 @@ namespace Ols.Core.Util.Build
 				sections["scripts"].AppendChild(assetNode);
 			}
 
-			if ((TabletScriptFile != null) && (TabletScriptFile.Length > 0))
+			if (!string.IsNullOrEmpty(TabletScriptFile))
 			{
 				if (!sections.ContainsKey("scripts"))
 				{

@@ -119,8 +119,11 @@ namespace Czf.Util.Build
 			
 			foreach (ITaskItem file in OutputFiles)
 			{
-				fileStatus = versionControlStatus.GetFileStatus(file.ToString());
+				string msg = string.Empty;
+				fileStatus = versionControlStatus.GetFileStatus(file.ToString(), out msg);
 				file.SetMetadata("VersionControlFileStatus", fileStatus.Status);
+				Log.LogMessage("last commitdate as int:" + fileStatus.LastCommitDateAsInt);
+				Log.LogMessage(msg);
 				file.SetMetadata("LastCommitDateAsInt", fileStatus.LastCommitDateAsInt.ToString());
 				file.SetMetadata("RevisionDateAndStatus", fileStatus.RevisionAndStatus);
 				if (fileStatus.LastCommitDateAsInt != 0)

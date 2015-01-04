@@ -29,9 +29,10 @@ namespace Czf.Util.VersionControl
         /// </summary>
         /// <param name="file">The file to inspect.</param>
         /// <returns>A <see cref="FileStatus" /> for the given file.</returns>
-		public FileStatus GetFileStatus(string file)
+		/// <param name = "message"></param>
+		public FileStatus GetFileStatus(string file, out string message)
 		{
-			
+			message = string.Empty;
 			
 			
 			Process command = new Process();
@@ -40,52 +41,50 @@ namespace Czf.Util.VersionControl
 			command.StartInfo.CreateNoWindow = true;
 			command.StartInfo.RedirectStandardOutput = true;
 			command.StartInfo.RedirectStandardError = true;
-			//command.StartInfo.FileName = @"D:\Program Files (x86)\Git\cmd\" + _gitPath;
 			
 			
 			command.StartInfo.FileName = _gitPath;
 			command.StartInfo.Arguments = "status --porcelain \"" + file + "\"" ;
 			
-			//File.WriteAllText("outputTest.txt", "FULL: " + command.StartInfo.WorkingDirectory+ " " + command.StartInfo.FileName+ " "+ command.StartInfo.Arguments);
 			command.Start();
-			//File.WriteAllText("outputTest2.txt",file);
 			string output = command.StandardOutput.ReadToEnd();
 			string error = command.StandardError.ReadToEnd();
-			//File.WriteAllText("outputTest.txt3", output +  "\n\n" + error);
 			command.WaitForExit();
 			if (error.Length > 0)
 			{
-				Console.WriteLine("error with file: " + file);
+				message += ("error with file: " + file)+ "\n";
 				return new FileStatus("error", 0, error);
 			}
 			else
 			{
-				XmlDocument XmlOutput = new XmlDocument();
 				FileStatus fileStatus = new FileStatus();
 
 				
 				if (output.Length >2)
 				{
+					message += ("OUTPUT!!")+ "\n";
 					fileStatus.Status = output.Substring(0,2).Trim();
-					string[] states = {"M","A","U","D"};
-
-					if (states.Any(x=>output.Contains(x)))
-					{
-						command.StartInfo.Arguments = "log --format=%ad \""+ file + "\"";
-							command.Start();
-						output = command.StandardOutput.ReadToEnd();
-						if (!string.IsNullOrEmpty(output)) {
-							DateTime lastCommit = DateTime.Now;
-							if (DateTime.TryParse(output, out lastCommit)) {
-								fileStatus.LastCommitDateAsInt = lastCommit.Ticks;
-							}
-						}
-							
-					}
 				}
 				else {
-					fileStatus.Status = "normal";
+					fileStatus.Status = "N";//normal?
 				}
+				
+				command.StartInfo.Arguments = "log --format=%cd --max-count=1 --date=iso \""+ file + "\"";
+				command.Start();
+				output = command.StandardOutput.ReadToEnd().Trim();
+				message += ("git committime: " + output) + "\n";
+				if (!string.IsNullOrEmpty(output)) {
+					DateTime lastCommit = DateTime.Now;
+					if (DateTime.TryParse(output, out lastCommit)) {
+						fileStatus.LastCommitDateAsInt = lastCommit.Ticks;
+						message += ("Parsed Time")+ "\n";
+					}
+					else
+					{
+						message += ("Could not parse time")+ "\n";
+					}
+				}
+		
 				return fileStatus;
 			}
 		}
@@ -105,7 +104,7 @@ namespace Czf.Util.VersionControl
         /// <summary>
         /// Initializes a new instance of the <see cref="GitStatus"/> class.
         /// </summary>
-        /// <param name="svnPath">The git.exe cli tool path.</param>
+        /// <param name="gitPath">The git.exe cli tool path.</param>
 		public GitStatus(string gitPath)
 		{
 			_gitPath = gitPath;

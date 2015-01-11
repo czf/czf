@@ -1,0 +1,95 @@
+﻿<#@ template hostspecific="true"language="C#" debug="true" #>
+<#@ assembly name="System.Core.dll" #>
+<#//@ assembly name="D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\bin\Czf.Util.Common.dll"
+#>
+<#//@assembly name="\Czf.Util.Common.dll"
+#>
+
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text.RegularExpressions"#>
+<#//@ import namespace="Czf.Util.Common"
+Func<string, string, string> LeftOf = (string s, string c) =>
+				{
+		    int ndx = s.IndexOf(c);
+		    if (ndx >= 0)
+		    {
+		    return s.Substring(0, ndx);
+		    }
+		 
+		    return s;
+			};
+
+
+#>
+
+
+//get all the files
+	//filter out the merge and minify files
+//add to appropriate section
+
+
+using System;
+
+namespace Czf.App.WebAuction
+{
+	public static class Asset
+	{
+		//string bleh = @"<#=Path.GetDirectoryName(Host.TemplateFile)#>";
+	 
+<#
+		HashSet<string> Properties = new HashSet<string>();	  
+	  	IEnumerable<string> fileNames = null;
+		Directory.SetCurrentDirectory(Path.GetDirectoryName(Path.GetDirectoryName(Host.TemplateFile)));
+	  	fileNames = Directory.EnumerateFiles(".\\css","*.css", SearchOption.AllDirectories);
+	  	Regex reg = new Regex("^(.)+?\\.[\\.\\w]+?\\.css$",RegexOptions.IgnoreCase);
+		//Regex reg = new Regex("^.+?\\.$");
+		
+#>		public static class Stylesheet
+		{
+			
+			
+			static Stylesheet()
+			{
+<#
+			
+		foreach(string fullPath in fileNames)
+	  	{
+			string fileName = Path.GetFileNameWithoutExtension(fullPath);
+			fileName = LeftOf(fileName,".");
+			Properties.Add(fileName);
+#>				css_<#=fileName#> = assetConfig.Stylesheets[@"css\<#=fileName#>.css"];
+<#
+
+		}
+	  
+	  
+#>			}
+
+<#		foreach(string propertyName in Properties)
+		{
+#>			public static readonly string css_<#=propertyName#>;
+<#
+		}#>
+
+		}
+
+	  
+	  <#=reg.IsMatch("D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\css\\desktop.635311976700000000.M.css")#>
+	  <#
+	  //reg = new Regex(".+?\\\\[A-Za-z]+?");
+	  //string filename = "D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\css\\desktop.635311976700000000.M.css";
+	  //filename = Path.GetFileNameWithoutExtension(filename);
+	  #>
+	  <#//=reg.Match(filename)
+	  #>
+	  <#//=reg.IsMatch("stylesheetnotfound.css")
+	  #>
+	  
+	}
+
+}
+

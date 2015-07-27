@@ -21,8 +21,9 @@ namespace Czf.App.WebAuction.Controllers
 		/// <returns></returns>
 		[HttpGet]
 		public ActionResult Index()
-		{			
+		{
 			LoginActionViewModel model = new LoginActionViewModel(AuctionSession.User);
+			string a = Asset.Stylesheet.css_desktop;
 			return View("Login",model);
 		}
 		

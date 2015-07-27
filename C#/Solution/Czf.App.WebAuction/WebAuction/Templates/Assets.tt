@@ -33,9 +33,14 @@ Func<string, string, string> LeftOf = (string s, string c) =>
 
 
 using System;
-
+using System.Configuration;
+using Czf.Util.Common;
 namespace Czf.App.WebAuction
 {
+
+	/// <summary>
+	/// Constants for application assets
+	/// </summary>
 	public static class Asset
 	{
 		//string bleh = @"<#=Path.GetDirectoryName(Host.TemplateFile)#>";
@@ -48,20 +53,30 @@ namespace Czf.App.WebAuction
 	  	Regex reg = new Regex("^(.)+?\\.[\\.\\w]+?\\.css$",RegexOptions.IgnoreCase);
 		//Regex reg = new Regex("^.+?\\.$");
 		
-#>		public static class Stylesheet
+#>		/// <summary>
+		/// Constants for application style sheets
+		/// </summary>
+		public static class Stylesheet
 		{
 			
 			
 			static Stylesheet()
 			{
+			//System.Diagnostics.Debugger.Launch();
+				AssetSection assetConfig = (AssetSection)ConfigurationManager.GetSection("assets");
+
 <#
 			
 		foreach(string fullPath in fileNames)
 	  	{
 			string fileName = Path.GetFileNameWithoutExtension(fullPath);
 			fileName = LeftOf(fileName,".");
+			if(fileName == "global" || fileName =="Site")
+			{
+				continue;
+			}
 			Properties.Add(fileName);
-#>				css_<#=fileName#> = assetConfig.Stylesheets[@"css\<#=fileName#>.css"];
+#>				css_<#=fileName #> = assetConfig.Stylesheets[@"css\\<#=fileName.ToLower() #>.css"].Location;
 <#
 
 		}
@@ -71,14 +86,28 @@ namespace Czf.App.WebAuction
 
 <#		foreach(string propertyName in Properties)
 		{
-#>			public static readonly string css_<#=propertyName#>;
+#>			#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+			public static readonly string css_<#=propertyName#>;
 <#
 		}#>
 
 		}
 
+		/// <summary>
+		/// constatns for application script assets 
+		/// </summary>
+		public static class Script
+		{
+			
+			static Script()
+			{
+				AssetSection assetConfig = (AssetSection)ConfigurationManager.GetSection("assets");
+
+
+			}
+		}
 	  
-	  <#=reg.IsMatch("D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\css\\desktop.635311976700000000.M.css")#>
+	  <#//=reg.IsMatch("D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\css\\desktop.635311976700000000.M.css")#>
 	  <#
 	  //reg = new Regex(".+?\\\\[A-Za-z]+?");
 	  //string filename = "D:\\dev\\solutions\\czf\\C#\\Solution\\Czf.App.WebAuction\\WebAuction\\css\\desktop.635311976700000000.M.css";

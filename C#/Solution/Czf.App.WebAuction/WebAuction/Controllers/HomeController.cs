@@ -8,6 +8,7 @@
  */
 using System;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 namespace Czf.App.WebAuction.Controllers
 {
 	/// <summary>
@@ -21,6 +22,9 @@ namespace Czf.App.WebAuction.Controllers
 		/// <returns></returns>
 		public ActionResult Index()
 		{
+			Regex reg = new Regex("^.+/.(/n)+/.css$",RegexOptions.IgnoreCase);
+			reg.IsMatch("global.500.css");
+			
 			return View();
 		}
 		

@@ -170,3 +170,6 @@ C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.config
 C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.errorFilter.config
 C#/Solution/Czf.App.WebAuction/WebAuction/Config/elmah.errorMail.config
 C#/Solution/Czf.App.WebAuction/WebAuction/Config/memcached.config
+/C#/APIExercise20151115/packages
+/C#/APIExercise20151115/.vs
+.vs
